@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2017 at 11:11 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Waktu pembuatan: 06 Sep 2022 pada 12.38
+-- Versi server: 10.1.32-MariaDB
+-- Versi PHP: 5.6.36
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_absensi_guru`
+-- Struktur dari tabel `rb_absensi_guru`
 --
 
 CREATE TABLE `rb_absensi_guru` (
@@ -38,7 +40,7 @@ CREATE TABLE `rb_absensi_guru` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_absensi_siswa`
+-- Struktur dari tabel `rb_absensi_siswa`
 --
 
 CREATE TABLE `rb_absensi_siswa` (
@@ -52,7 +54,7 @@ CREATE TABLE `rb_absensi_siswa` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_absensi_siswa`
+-- Dumping data untuk tabel `rb_absensi_siswa`
 --
 
 INSERT INTO `rb_absensi_siswa` (`id_absensi_siswa`, `id_journal`, `kodejdwl`, `nisn`, `kode_kehadiran`, `tanggal`, `waktu_input`) VALUES
@@ -306,7 +308,7 @@ INSERT INTO `rb_absensi_siswa` (`id_absensi_siswa`, `id_journal`, `kodejdwl`, `n
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_agama`
+-- Struktur dari tabel `rb_agama`
 --
 
 CREATE TABLE `rb_agama` (
@@ -315,7 +317,7 @@ CREATE TABLE `rb_agama` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_agama`
+-- Dumping data untuk tabel `rb_agama`
 --
 
 INSERT INTO `rb_agama` (`id_agama`, `nama_agama`) VALUES
@@ -327,7 +329,7 @@ INSERT INTO `rb_agama` (`id_agama`, `nama_agama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_bank_pertanyaan_essai`
+-- Struktur dari tabel `rb_bank_pertanyaan_essai`
 --
 
 CREATE TABLE `rb_bank_pertanyaan_essai` (
@@ -337,7 +339,7 @@ CREATE TABLE `rb_bank_pertanyaan_essai` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_bank_pertanyaan_essai`
+-- Dumping data untuk tabel `rb_bank_pertanyaan_essai`
 --
 
 INSERT INTO `rb_bank_pertanyaan_essai` (`id_bank_pertanyaan_essai`, `kode_pelajaran`, `pertanyaan_essai`) VALUES
@@ -358,7 +360,7 @@ INSERT INTO `rb_bank_pertanyaan_essai` (`id_bank_pertanyaan_essai`, `kode_pelaja
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_bank_pertanyaan_objektif`
+-- Struktur dari tabel `rb_bank_pertanyaan_objektif`
 --
 
 CREATE TABLE `rb_bank_pertanyaan_objektif` (
@@ -374,7 +376,7 @@ CREATE TABLE `rb_bank_pertanyaan_objektif` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_bank_pertanyaan_objektif`
+-- Dumping data untuk tabel `rb_bank_pertanyaan_objektif`
 --
 
 INSERT INTO `rb_bank_pertanyaan_objektif` (`id_bank_pertanyaan_objektif`, `kode_pelajaran`, `pertanyaan_objektif`, `jawab_a`, `jawab_b`, `jawab_c`, `jawab_d`, `jawab_e`, `kunci_jawaban`) VALUES
@@ -390,7 +392,7 @@ INSERT INTO `rb_bank_pertanyaan_objektif` (`id_bank_pertanyaan_objektif`, `kode_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_bar`
+-- Struktur dari tabel `rb_bar`
 --
 
 CREATE TABLE `rb_bar` (
@@ -406,7 +408,7 @@ CREATE TABLE `rb_bar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_bar`
+-- Dumping data untuk tabel `rb_bar`
 --
 
 INSERT INTO `rb_bar` (`id_absen`, `nip`, `tanggal_absen`, `jam_masuk`, `jam_keluar`, `status_masuk`, `status_keluar`, `ket`, `terlambat`) VALUES
@@ -415,7 +417,7 @@ INSERT INTO `rb_bar` (`id_absen`, `nip`, `tanggal_absen`, `jam_masuk`, `jam_kelu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_barcode`
+-- Struktur dari tabel `rb_barcode`
 --
 
 CREATE TABLE `rb_barcode` (
@@ -431,7 +433,7 @@ CREATE TABLE `rb_barcode` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_barcode`
+-- Dumping data untuk tabel `rb_barcode`
 --
 
 INSERT INTO `rb_barcode` (`id_absen`, `nipd`, `tanggal_absen`, `jam_masuk`, `jam_keluar`, `status_masuk`, `status_keluar`, `ket`, `terlambat`) VALUES
@@ -440,7 +442,7 @@ INSERT INTO `rb_barcode` (`id_absen`, `nipd`, `tanggal_absen`, `jam_masuk`, `jam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_elearning`
+-- Struktur dari tabel `rb_elearning`
 --
 
 CREATE TABLE `rb_elearning` (
@@ -455,7 +457,7 @@ CREATE TABLE `rb_elearning` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_elearning`
+-- Dumping data untuk tabel `rb_elearning`
 --
 
 INSERT INTO `rb_elearning` (`id_elearning`, `id_kategori_elearning`, `kodejdwl`, `nama_file`, `file_upload`, `tanggal_tugas`, `tanggal_selesai`, `keterangan`) VALUES
@@ -473,7 +475,7 @@ INSERT INTO `rb_elearning` (`id_elearning`, `id_kategori_elearning`, `kodejdwl`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_elearning_jawab`
+-- Struktur dari tabel `rb_elearning_jawab`
 --
 
 CREATE TABLE `rb_elearning_jawab` (
@@ -486,7 +488,7 @@ CREATE TABLE `rb_elearning_jawab` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_elearning_jawab`
+-- Dumping data untuk tabel `rb_elearning_jawab`
 --
 
 INSERT INTO `rb_elearning_jawab` (`id_elearning_jawab`, `id_elearning`, `nisn`, `keterangan`, `file_tugas`, `waktu`) VALUES
@@ -496,7 +498,7 @@ INSERT INTO `rb_elearning_jawab` (`id_elearning_jawab`, `id_elearning`, `nisn`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_forum_komentar`
+-- Struktur dari tabel `rb_forum_komentar`
 --
 
 CREATE TABLE `rb_forum_komentar` (
@@ -508,7 +510,7 @@ CREATE TABLE `rb_forum_komentar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_forum_komentar`
+-- Dumping data untuk tabel `rb_forum_komentar`
 --
 
 INSERT INTO `rb_forum_komentar` (`id_forum_komentar`, `id_forum_topic`, `nisn_nip`, `isi_komentar`, `waktu_komentar`) VALUES
@@ -528,7 +530,7 @@ INSERT INTO `rb_forum_komentar` (`id_forum_komentar`, `id_forum_topic`, `nisn_ni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_forum_topic`
+-- Struktur dari tabel `rb_forum_topic`
 --
 
 CREATE TABLE `rb_forum_topic` (
@@ -540,7 +542,7 @@ CREATE TABLE `rb_forum_topic` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_forum_topic`
+-- Dumping data untuk tabel `rb_forum_topic`
 --
 
 INSERT INTO `rb_forum_topic` (`id_forum_topic`, `kodejdwl`, `judul_topic`, `isi_topic`, `waktu`) VALUES
@@ -553,7 +555,7 @@ INSERT INTO `rb_forum_topic` (`id_forum_topic`, `kodejdwl`, `judul_topic`, `isi_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_gedung`
+-- Struktur dari tabel `rb_gedung`
 --
 
 CREATE TABLE `rb_gedung` (
@@ -568,7 +570,7 @@ CREATE TABLE `rb_gedung` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_gedung`
+-- Dumping data untuk tabel `rb_gedung`
 --
 
 INSERT INTO `rb_gedung` (`kode_gedung`, `nama_gedung`, `jumlah_lantai`, `panjang`, `tinggi`, `lebar`, `keterangan`, `aktif`) VALUES
@@ -579,7 +581,7 @@ INSERT INTO `rb_gedung` (`kode_gedung`, `nama_gedung`, `jumlah_lantai`, `panjang
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_golongan`
+-- Struktur dari tabel `rb_golongan`
 --
 
 CREATE TABLE `rb_golongan` (
@@ -589,7 +591,7 @@ CREATE TABLE `rb_golongan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_golongan`
+-- Dumping data untuk tabel `rb_golongan`
 --
 
 INSERT INTO `rb_golongan` (`id_golongan`, `nama_golongan`, `keterangan`) VALUES
@@ -598,7 +600,7 @@ INSERT INTO `rb_golongan` (`id_golongan`, `nama_golongan`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_guru`
+-- Struktur dari tabel `rb_guru`
 --
 
 CREATE TABLE `rb_guru` (
@@ -653,7 +655,7 @@ CREATE TABLE `rb_guru` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_guru`
+-- Dumping data untuk tabel `rb_guru`
 --
 
 INSERT INTO `rb_guru` (`nip`, `password`, `nama_guru`, `id_jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `nik`, `niy_nigk`, `nuptk`, `id_status_kepegawaian`, `id_jenis_ptk`, `pengawas_bidang_studi`, `id_agama`, `alamat_jalan`, `rt`, `rw`, `nama_dusun`, `desa_kelurahan`, `kecamatan`, `kode_pos`, `telepon`, `hp`, `email`, `tugas_tambahan`, `id_status_keaktifan`, `sk_cpns`, `tanggal_cpns`, `sk_pengangkatan`, `tmt_pengangkatan`, `lembaga_pengangkatan`, `id_golongan`, `keahlian_laboratorium`, `sumber_gaji`, `nama_ibu_kandung`, `id_status_pernikahan`, `nama_suami_istri`, `nip_suami_istri`, `pekerjaan_suami_istri`, `tmt_pns`, `lisensi_kepsek`, `jumlah_sekolah_binaan`, `diklat_kepengawasan`, `mampu_handle_kk`, `keahlian_breile`, `keahlian_bahasa_isyarat`, `npwp`, `kewarganegaraan`, `foto`) VALUES
@@ -677,7 +679,7 @@ INSERT INTO `rb_guru` (`nip`, `password`, `nama_guru`, `id_jenis_kelamin`, `temp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_guru_akses`
+-- Struktur dari tabel `rb_guru_akses`
 --
 
 CREATE TABLE `rb_guru_akses` (
@@ -687,7 +689,7 @@ CREATE TABLE `rb_guru_akses` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_guru_akses`
+-- Dumping data untuk tabel `rb_guru_akses`
 --
 
 INSERT INTO `rb_guru_akses` (`id_guru_akses`, `nip`, `id_modul`) VALUES
@@ -701,7 +703,7 @@ INSERT INTO `rb_guru_akses` (`id_guru_akses`, `nip`, `id_modul`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_halaman`
+-- Struktur dari tabel `rb_halaman`
 --
 
 CREATE TABLE `rb_halaman` (
@@ -714,7 +716,7 @@ CREATE TABLE `rb_halaman` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_halaman`
+-- Dumping data untuk tabel `rb_halaman`
 --
 
 INSERT INTO `rb_halaman` (`id_halaman`, `judul`, `judul_seo`, `isi_halaman`, `username`, `status`) VALUES
@@ -724,7 +726,7 @@ INSERT INTO `rb_halaman` (`id_halaman`, `judul`, `judul_seo`, `isi_halaman`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_identitas_sekolah`
+-- Struktur dari tabel `rb_identitas_sekolah`
 --
 
 CREATE TABLE `rb_identitas_sekolah` (
@@ -744,7 +746,7 @@ CREATE TABLE `rb_identitas_sekolah` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_identitas_sekolah`
+-- Dumping data untuk tabel `rb_identitas_sekolah`
 --
 
 INSERT INTO `rb_identitas_sekolah` (`id_identitas_sekolah`, `nama_sekolah`, `npsn`, `nss`, `alamat_sekolah`, `kode_pos`, `no_telpon`, `kelurahan`, `kecamatan`, `kabupaten_kota`, `provinsi`, `website`, `email`) VALUES
@@ -753,7 +755,7 @@ INSERT INTO `rb_identitas_sekolah` (`id_identitas_sekolah`, `nama_sekolah`, `nps
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_jadwal_pelajaran`
+-- Struktur dari tabel `rb_jadwal_pelajaran`
 --
 
 CREATE TABLE `rb_jadwal_pelajaran` (
@@ -772,7 +774,7 @@ CREATE TABLE `rb_jadwal_pelajaran` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_jadwal_pelajaran`
+-- Dumping data untuk tabel `rb_jadwal_pelajaran`
 --
 
 INSERT INTO `rb_jadwal_pelajaran` (`kodejdwl`, `id_tahun_akademik`, `kode_kelas`, `kode_pelajaran`, `kode_ruangan`, `nip`, `paralel`, `jadwal_serial`, `jam_mulai`, `jam_selesai`, `hari`, `aktif`) VALUES
@@ -792,7 +794,7 @@ INSERT INTO `rb_jadwal_pelajaran` (`kodejdwl`, `id_tahun_akademik`, `kode_kelas`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_jawaban_essai`
+-- Struktur dari tabel `rb_jawaban_essai`
 --
 
 CREATE TABLE `rb_jawaban_essai` (
@@ -804,7 +806,7 @@ CREATE TABLE `rb_jawaban_essai` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_jawaban_essai`
+-- Dumping data untuk tabel `rb_jawaban_essai`
 --
 
 INSERT INTO `rb_jawaban_essai` (`id_jawaban_essai`, `nisn`, `id_pertanyaan_essai`, `jawaban_essai`, `waktu_tugas`) VALUES
@@ -825,7 +827,7 @@ INSERT INTO `rb_jawaban_essai` (`id_jawaban_essai`, `nisn`, `id_pertanyaan_essai
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_jawaban_objektif`
+-- Struktur dari tabel `rb_jawaban_objektif`
 --
 
 CREATE TABLE `rb_jawaban_objektif` (
@@ -837,7 +839,7 @@ CREATE TABLE `rb_jawaban_objektif` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_jawaban_objektif`
+-- Dumping data untuk tabel `rb_jawaban_objektif`
 --
 
 INSERT INTO `rb_jawaban_objektif` (`id_jawaban_objektif`, `nisn`, `id_pertanyaan_objektif`, `jawaban`, `waktu_objektif`) VALUES
@@ -862,7 +864,7 @@ INSERT INTO `rb_jawaban_objektif` (`id_jawaban_objektif`, `nisn`, `id_pertanyaan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_jenis_kelamin`
+-- Struktur dari tabel `rb_jenis_kelamin`
 --
 
 CREATE TABLE `rb_jenis_kelamin` (
@@ -871,7 +873,7 @@ CREATE TABLE `rb_jenis_kelamin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_jenis_kelamin`
+-- Dumping data untuk tabel `rb_jenis_kelamin`
 --
 
 INSERT INTO `rb_jenis_kelamin` (`id_jenis_kelamin`, `jenis_kelamin`) VALUES
@@ -881,7 +883,7 @@ INSERT INTO `rb_jenis_kelamin` (`id_jenis_kelamin`, `jenis_kelamin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_jenis_ptk`
+-- Struktur dari tabel `rb_jenis_ptk`
 --
 
 CREATE TABLE `rb_jenis_ptk` (
@@ -891,7 +893,7 @@ CREATE TABLE `rb_jenis_ptk` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_jenis_ptk`
+-- Dumping data untuk tabel `rb_jenis_ptk`
 --
 
 INSERT INTO `rb_jenis_ptk` (`id_jenis_ptk`, `jenis_ptk`, `keterangan`) VALUES
@@ -903,7 +905,7 @@ INSERT INTO `rb_jenis_ptk` (`id_jenis_ptk`, `jenis_ptk`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_journal_list`
+-- Struktur dari tabel `rb_journal_list`
 --
 
 CREATE TABLE `rb_journal_list` (
@@ -920,7 +922,7 @@ CREATE TABLE `rb_journal_list` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_journal_list`
+-- Dumping data untuk tabel `rb_journal_list`
 --
 
 INSERT INTO `rb_journal_list` (`id_journal`, `id_kompetensi_dasar`, `kodejdwl`, `hari`, `tanggal`, `jam_ke`, `materi`, `keterangan`, `waktu_input`, `users`) VALUES
@@ -981,7 +983,7 @@ INSERT INTO `rb_journal_list` (`id_journal`, `id_kompetensi_dasar`, `kodejdwl`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_jurusan`
+-- Struktur dari tabel `rb_jurusan`
 --
 
 CREATE TABLE `rb_jurusan` (
@@ -998,7 +1000,7 @@ CREATE TABLE `rb_jurusan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_jurusan`
+-- Dumping data untuk tabel `rb_jurusan`
 --
 
 INSERT INTO `rb_jurusan` (`kode_jurusan`, `nama_jurusan`, `nama_jurusan_en`, `bidang_keahlian`, `kompetensi_umum`, `kompetensi_khusus`, `pejabat`, `jabatan`, `keterangan`, `aktif`) VALUES
@@ -1010,7 +1012,7 @@ INSERT INTO `rb_jurusan` (`kode_jurusan`, `nama_jurusan`, `nama_jurusan_en`, `bi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kategori_elearning`
+-- Struktur dari tabel `rb_kategori_elearning`
 --
 
 CREATE TABLE `rb_kategori_elearning` (
@@ -1019,7 +1021,7 @@ CREATE TABLE `rb_kategori_elearning` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kategori_elearning`
+-- Dumping data untuk tabel `rb_kategori_elearning`
 --
 
 INSERT INTO `rb_kategori_elearning` (`id_kategori_elearning`, `nama_kategori_elearning`) VALUES
@@ -1029,7 +1031,7 @@ INSERT INTO `rb_kategori_elearning` (`id_kategori_elearning`, `nama_kategori_ele
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kategori_quiz_ujian`
+-- Struktur dari tabel `rb_kategori_quiz_ujian`
 --
 
 CREATE TABLE `rb_kategori_quiz_ujian` (
@@ -1038,7 +1040,7 @@ CREATE TABLE `rb_kategori_quiz_ujian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kategori_quiz_ujian`
+-- Dumping data untuk tabel `rb_kategori_quiz_ujian`
 --
 
 INSERT INTO `rb_kategori_quiz_ujian` (`id_kategori_quiz_ujian`, `kategori_quiz_ujian`) VALUES
@@ -1048,7 +1050,7 @@ INSERT INTO `rb_kategori_quiz_ujian` (`id_kategori_quiz_ujian`, `kategori_quiz_u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kehadiran`
+-- Struktur dari tabel `rb_kehadiran`
 --
 
 CREATE TABLE `rb_kehadiran` (
@@ -1059,7 +1061,7 @@ CREATE TABLE `rb_kehadiran` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kehadiran`
+-- Dumping data untuk tabel `rb_kehadiran`
 --
 
 INSERT INTO `rb_kehadiran` (`kode_kehadiran`, `nama_kehadiran`, `nilai`, `bobot`) VALUES
@@ -1071,7 +1073,7 @@ INSERT INTO `rb_kehadiran` (`kode_kehadiran`, `nama_kehadiran`, `nilai`, `bobot`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kelas`
+-- Struktur dari tabel `rb_kelas`
 --
 
 CREATE TABLE `rb_kelas` (
@@ -1084,7 +1086,7 @@ CREATE TABLE `rb_kelas` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kelas`
+-- Dumping data untuk tabel `rb_kelas`
 --
 
 INSERT INTO `rb_kelas` (`kode_kelas`, `nip`, `kode_jurusan`, `kode_ruangan`, `nama_kelas`, `aktif`) VALUES
@@ -1102,7 +1104,7 @@ INSERT INTO `rb_kelas` (`kode_kelas`, `nip`, `kode_jurusan`, `kode_ruangan`, `na
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kelompok_mata_pelajaran`
+-- Struktur dari tabel `rb_kelompok_mata_pelajaran`
 --
 
 CREATE TABLE `rb_kelompok_mata_pelajaran` (
@@ -1112,7 +1114,7 @@ CREATE TABLE `rb_kelompok_mata_pelajaran` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kelompok_mata_pelajaran`
+-- Dumping data untuk tabel `rb_kelompok_mata_pelajaran`
 --
 
 INSERT INTO `rb_kelompok_mata_pelajaran` (`id_kelompok_mata_pelajaran`, `jenis_kelompok_mata_pelajaran`, `nama_kelompok_mata_pelajaran`) VALUES
@@ -1123,7 +1125,7 @@ INSERT INTO `rb_kelompok_mata_pelajaran` (`id_kelompok_mata_pelajaran`, `jenis_k
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_keuangan_bayar`
+-- Struktur dari tabel `rb_keuangan_bayar`
 --
 
 CREATE TABLE `rb_keuangan_bayar` (
@@ -1137,7 +1139,7 @@ CREATE TABLE `rb_keuangan_bayar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_keuangan_bayar`
+-- Dumping data untuk tabel `rb_keuangan_bayar`
 --
 
 INSERT INTO `rb_keuangan_bayar` (`id_keuangan_bayar`, `id_keuangan_jenis`, `kode_kelas`, `nisn`, `tahun_akademik`, `total_bayar`, `waktu_bayar`) VALUES
@@ -1163,7 +1165,7 @@ INSERT INTO `rb_keuangan_bayar` (`id_keuangan_bayar`, `id_keuangan_jenis`, `kode
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_keuangan_jenis`
+-- Struktur dari tabel `rb_keuangan_jenis`
 --
 
 CREATE TABLE `rb_keuangan_jenis` (
@@ -1173,7 +1175,7 @@ CREATE TABLE `rb_keuangan_jenis` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_keuangan_jenis`
+-- Dumping data untuk tabel `rb_keuangan_jenis`
 --
 
 INSERT INTO `rb_keuangan_jenis` (`id_keuangan_jenis`, `nama_jenis`, `total_beban`) VALUES
@@ -1189,7 +1191,7 @@ INSERT INTO `rb_keuangan_jenis` (`id_keuangan_jenis`, `nama_jenis`, `total_beban
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kompetensi_dasar`
+-- Struktur dari tabel `rb_kompetensi_dasar`
 --
 
 CREATE TABLE `rb_kompetensi_dasar` (
@@ -1202,7 +1204,7 @@ CREATE TABLE `rb_kompetensi_dasar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kompetensi_dasar`
+-- Dumping data untuk tabel `rb_kompetensi_dasar`
 --
 
 INSERT INTO `rb_kompetensi_dasar` (`id_kompetensi_dasar`, `kode_pelajaran`, `kd`, `ranah`, `kompetensi_dasar`, `waktu_input`) VALUES
@@ -1223,7 +1225,7 @@ INSERT INTO `rb_kompetensi_dasar` (`id_kompetensi_dasar`, `kode_pelajaran`, `kd`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_kurikulum`
+-- Struktur dari tabel `rb_kurikulum`
 --
 
 CREATE TABLE `rb_kurikulum` (
@@ -1233,7 +1235,7 @@ CREATE TABLE `rb_kurikulum` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_kurikulum`
+-- Dumping data untuk tabel `rb_kurikulum`
 --
 
 INSERT INTO `rb_kurikulum` (`kode_kurikulum`, `nama_kurikulum`, `status_kurikulum`) VALUES
@@ -1243,7 +1245,7 @@ INSERT INTO `rb_kurikulum` (`kode_kurikulum`, `nama_kurikulum`, `status_kurikulu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_ledger`
+-- Struktur dari tabel `rb_ledger`
 --
 
 CREATE TABLE `rb_ledger` (
@@ -1261,7 +1263,7 @@ CREATE TABLE `rb_ledger` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_ledger`
+-- Dumping data untuk tabel `rb_ledger`
 --
 
 INSERT INTO `rb_ledger` (`id_ledger`, `kodejdwl`, `nisn`, `kode_kelas`, `pengetahuan`, `keterampilan`, `sikap`, `desk_pengetahuan`, `desk_keterampilan`, `desk_sikap`, `waktu_update`) VALUES
@@ -1378,7 +1380,7 @@ INSERT INTO `rb_ledger` (`id_ledger`, `kodejdwl`, `nisn`, `kode_kelas`, `pengeta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_mata_pelajaran`
+-- Struktur dari tabel `rb_mata_pelajaran`
 --
 
 CREATE TABLE `rb_mata_pelajaran` (
@@ -1400,7 +1402,7 @@ CREATE TABLE `rb_mata_pelajaran` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_mata_pelajaran`
+-- Dumping data untuk tabel `rb_mata_pelajaran`
 --
 
 INSERT INTO `rb_mata_pelajaran` (`kode_pelajaran`, `id_kelompok_mata_pelajaran`, `kode_jurusan`, `nip`, `kode_kurikulum`, `namamatapelajaran`, `namamatapelajaran_en`, `tingkat`, `kompetensi_umum`, `kompetensi_khusus`, `jumlah_jam`, `sesi`, `urutan`, `kkm`, `aktif`) VALUES
@@ -1423,7 +1425,7 @@ INSERT INTO `rb_mata_pelajaran` (`kode_pelajaran`, `id_kelompok_mata_pelajaran`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_menu`
+-- Struktur dari tabel `rb_menu`
 --
 
 CREATE TABLE `rb_menu` (
@@ -1438,7 +1440,7 @@ CREATE TABLE `rb_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_menu`
+-- Dumping data untuk tabel `rb_menu`
 --
 
 INSERT INTO `rb_menu` (`id_menu`, `id_parent`, `nama_menu`, `icon`, `link`, `aktif`, `urutan`, `status`) VALUES
@@ -1450,7 +1452,7 @@ INSERT INTO `rb_menu` (`id_menu`, `id_parent`, `nama_menu`, `icon`, `link`, `akt
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_modul`
+-- Struktur dari tabel `rb_modul`
 --
 
 CREATE TABLE `rb_modul` (
@@ -1461,7 +1463,7 @@ CREATE TABLE `rb_modul` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_modul`
+-- Dumping data untuk tabel `rb_modul`
 --
 
 INSERT INTO `rb_modul` (`id_modul`, `nama_modul`, `url`, `aktif`) VALUES
@@ -1476,7 +1478,7 @@ INSERT INTO `rb_modul` (`id_modul`, `nama_modul`, `url`, `aktif`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_extrakulikuler`
+-- Struktur dari tabel `rb_nilai_extrakulikuler`
 --
 
 CREATE TABLE `rb_nilai_extrakulikuler` (
@@ -1492,7 +1494,7 @@ CREATE TABLE `rb_nilai_extrakulikuler` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_extrakulikuler`
+-- Dumping data untuk tabel `rb_nilai_extrakulikuler`
 --
 
 INSERT INTO `rb_nilai_extrakulikuler` (`id_nilai_extrakulikuler`, `id_tahun_akademik`, `nisn`, `kode_kelas`, `kegiatan`, `nilai`, `deskripsi`, `user_akses`, `waktu_input`) VALUES
@@ -1503,7 +1505,7 @@ INSERT INTO `rb_nilai_extrakulikuler` (`id_nilai_extrakulikuler`, `id_tahun_akad
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_keterampilan`
+-- Struktur dari tabel `rb_nilai_keterampilan`
 --
 
 CREATE TABLE `rb_nilai_keterampilan` (
@@ -1523,7 +1525,7 @@ CREATE TABLE `rb_nilai_keterampilan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_keterampilan`
+-- Dumping data untuk tabel `rb_nilai_keterampilan`
 --
 
 INSERT INTO `rb_nilai_keterampilan` (`id_nilai_keterampilan`, `kodejdwl`, `nisn`, `kd`, `nilai1`, `nilai2`, `nilai3`, `nilai4`, `nilai5`, `nilai6`, `deskripsi`, `user_akses`, `waktu`) VALUES
@@ -1547,7 +1549,7 @@ INSERT INTO `rb_nilai_keterampilan` (`id_nilai_keterampilan`, `kodejdwl`, `nisn`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_pengetahuan`
+-- Struktur dari tabel `rb_nilai_pengetahuan`
 --
 
 CREATE TABLE `rb_nilai_pengetahuan` (
@@ -1562,7 +1564,7 @@ CREATE TABLE `rb_nilai_pengetahuan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_pengetahuan`
+-- Dumping data untuk tabel `rb_nilai_pengetahuan`
 --
 
 INSERT INTO `rb_nilai_pengetahuan` (`id_nilai_pengetahuan`, `kodejdwl`, `nisn`, `id_kompetensi_dasar`, `nilai1`, `nilai2`, `user_akses`, `waktu`) VALUES
@@ -1588,7 +1590,7 @@ INSERT INTO `rb_nilai_pengetahuan` (`id_nilai_pengetahuan`, `kodejdwl`, `nisn`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_pengetahuan_semester`
+-- Struktur dari tabel `rb_nilai_pengetahuan_semester`
 --
 
 CREATE TABLE `rb_nilai_pengetahuan_semester` (
@@ -1602,7 +1604,7 @@ CREATE TABLE `rb_nilai_pengetahuan_semester` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_pengetahuan_semester`
+-- Dumping data untuk tabel `rb_nilai_pengetahuan_semester`
 --
 
 INSERT INTO `rb_nilai_pengetahuan_semester` (`id_nilai_pengetahuan_semester`, `kodejdwl`, `nisn`, `nilai1`, `nilai2`, `user_akses`, `waktu`) VALUES
@@ -1620,7 +1622,7 @@ INSERT INTO `rb_nilai_pengetahuan_semester` (`id_nilai_pengetahuan_semester`, `k
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_pertanyaan_essai`
+-- Struktur dari tabel `rb_nilai_pertanyaan_essai`
 --
 
 CREATE TABLE `rb_nilai_pertanyaan_essai` (
@@ -1631,7 +1633,7 @@ CREATE TABLE `rb_nilai_pertanyaan_essai` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_pertanyaan_essai`
+-- Dumping data untuk tabel `rb_nilai_pertanyaan_essai`
 --
 
 INSERT INTO `rb_nilai_pertanyaan_essai` (`id_nilai_pertanyaan_essai`, `id_quiz_ujian`, `nisn`, `nilai_essai`) VALUES
@@ -1643,7 +1645,7 @@ INSERT INTO `rb_nilai_pertanyaan_essai` (`id_nilai_pertanyaan_essai`, `id_quiz_u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_prestasi`
+-- Struktur dari tabel `rb_nilai_prestasi`
 --
 
 CREATE TABLE `rb_nilai_prestasi` (
@@ -1658,7 +1660,7 @@ CREATE TABLE `rb_nilai_prestasi` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_prestasi`
+-- Dumping data untuk tabel `rb_nilai_prestasi`
 --
 
 INSERT INTO `rb_nilai_prestasi` (`id_nilai_prestasi`, `id_tahun_akademik`, `nisn`, `kode_kelas`, `jenis_kegiatan`, `keterangan`, `user_akses`, `waktu_input`) VALUES
@@ -1668,7 +1670,7 @@ INSERT INTO `rb_nilai_prestasi` (`id_nilai_prestasi`, `id_tahun_akademik`, `nisn
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_sikap`
+-- Struktur dari tabel `rb_nilai_sikap`
 --
 
 CREATE TABLE `rb_nilai_sikap` (
@@ -1684,7 +1686,7 @@ CREATE TABLE `rb_nilai_sikap` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_sikap`
+-- Dumping data untuk tabel `rb_nilai_sikap`
 --
 
 INSERT INTO `rb_nilai_sikap` (`id_nilai_sikap`, `kodejdwl`, `nisn`, `positif`, `negatif`, `deskripsi`, `status`, `user_akses`, `waktu`) VALUES
@@ -1721,7 +1723,7 @@ INSERT INTO `rb_nilai_sikap` (`id_nilai_sikap`, `kodejdwl`, `nisn`, `positif`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_sikap_indikator`
+-- Struktur dari tabel `rb_nilai_sikap_indikator`
 --
 
 CREATE TABLE `rb_nilai_sikap_indikator` (
@@ -1730,7 +1732,7 @@ CREATE TABLE `rb_nilai_sikap_indikator` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_sikap_indikator`
+-- Dumping data untuk tabel `rb_nilai_sikap_indikator`
 --
 
 INSERT INTO `rb_nilai_sikap_indikator` (`kode_indikator`, `keterangan`) VALUES
@@ -1741,7 +1743,7 @@ INSERT INTO `rb_nilai_sikap_indikator` (`kode_indikator`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_sikap_semester`
+-- Struktur dari tabel `rb_nilai_sikap_semester`
 --
 
 CREATE TABLE `rb_nilai_sikap_semester` (
@@ -1758,7 +1760,7 @@ CREATE TABLE `rb_nilai_sikap_semester` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_sikap_semester`
+-- Dumping data untuk tabel `rb_nilai_sikap_semester`
 --
 
 INSERT INTO `rb_nilai_sikap_semester` (`id_nilai_sikap_semester`, `id_tahun_akademik`, `nisn`, `kode_kelas`, `spiritual_predikat`, `spiritual_deskripsi`, `sosial_predikat`, `sosial_deskripsi`, `user_akses`, `waktu_input`) VALUES
@@ -1770,7 +1772,7 @@ INSERT INTO `rb_nilai_sikap_semester` (`id_nilai_sikap_semester`, `id_tahun_akad
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_nilai_uts`
+-- Struktur dari tabel `rb_nilai_uts`
 --
 
 CREATE TABLE `rb_nilai_uts` (
@@ -1785,7 +1787,7 @@ CREATE TABLE `rb_nilai_uts` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_nilai_uts`
+-- Dumping data untuk tabel `rb_nilai_uts`
 --
 
 INSERT INTO `rb_nilai_uts` (`id_nilai_uts`, `kodejdwl`, `nisn`, `angka_pengetahuan`, `deskripsi_pengetahuan`, `angka_keterampilan`, `deskripsi_keterampilan`, `waktu_input_uts`) VALUES
@@ -1797,7 +1799,7 @@ INSERT INTO `rb_nilai_uts` (`id_nilai_uts`, `kodejdwl`, `nisn`, `angka_pengetahu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_peringkat`
+-- Struktur dari tabel `rb_peringkat`
 --
 
 CREATE TABLE `rb_peringkat` (
@@ -1810,7 +1812,7 @@ CREATE TABLE `rb_peringkat` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_peringkat`
+-- Dumping data untuk tabel `rb_peringkat`
 --
 
 INSERT INTO `rb_peringkat` (`id_peringkat`, `nisn`, `kode_kelas`, `id_tahun_akademik`, `nilai_total`, `rank`) VALUES
@@ -1927,7 +1929,7 @@ INSERT INTO `rb_peringkat` (`id_peringkat`, `nisn`, `kode_kelas`, `id_tahun_akad
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_pertanyaan_essai`
+-- Struktur dari tabel `rb_pertanyaan_essai`
 --
 
 CREATE TABLE `rb_pertanyaan_essai` (
@@ -1937,7 +1939,7 @@ CREATE TABLE `rb_pertanyaan_essai` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_pertanyaan_essai`
+-- Dumping data untuk tabel `rb_pertanyaan_essai`
 --
 
 INSERT INTO `rb_pertanyaan_essai` (`id_pertanyaan_essai`, `id_quiz_ujian`, `id_bank_pertanyaan_essai`) VALUES
@@ -1961,7 +1963,7 @@ INSERT INTO `rb_pertanyaan_essai` (`id_pertanyaan_essai`, `id_quiz_ujian`, `id_b
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_pertanyaan_objektif`
+-- Struktur dari tabel `rb_pertanyaan_objektif`
 --
 
 CREATE TABLE `rb_pertanyaan_objektif` (
@@ -1971,7 +1973,7 @@ CREATE TABLE `rb_pertanyaan_objektif` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_pertanyaan_objektif`
+-- Dumping data untuk tabel `rb_pertanyaan_objektif`
 --
 
 INSERT INTO `rb_pertanyaan_objektif` (`id_pertanyaan_objektif`, `id_quiz_ujian`, `id_bank_pertanyaan_objektif`) VALUES
@@ -1996,7 +1998,7 @@ INSERT INTO `rb_pertanyaan_objektif` (`id_pertanyaan_objektif`, `id_quiz_ujian`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_pertanyaan_penilaian`
+-- Struktur dari tabel `rb_pertanyaan_penilaian`
 --
 
 CREATE TABLE `rb_pertanyaan_penilaian` (
@@ -2007,7 +2009,7 @@ CREATE TABLE `rb_pertanyaan_penilaian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_pertanyaan_penilaian`
+-- Dumping data untuk tabel `rb_pertanyaan_penilaian`
 --
 
 INSERT INTO `rb_pertanyaan_penilaian` (`id_pertanyaan_penilaian`, `pertanyaan`, `status`, `waktu_input`) VALUES
@@ -2019,7 +2021,7 @@ INSERT INTO `rb_pertanyaan_penilaian` (`id_pertanyaan_penilaian`, `pertanyaan`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_pertanyaan_penilaian_jawab`
+-- Struktur dari tabel `rb_pertanyaan_penilaian_jawab`
 --
 
 CREATE TABLE `rb_pertanyaan_penilaian_jawab` (
@@ -2034,7 +2036,7 @@ CREATE TABLE `rb_pertanyaan_penilaian_jawab` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_pertanyaan_penilaian_jawab`
+-- Dumping data untuk tabel `rb_pertanyaan_penilaian_jawab`
 --
 
 INSERT INTO `rb_pertanyaan_penilaian_jawab` (`id_pertanyaan_penilaian_jawab`, `id_pertanyaan_penilaian`, `nisn`, `nisn_teman`, `jawaban`, `status`, `kode_kelas`, `waktu_jawab`) VALUES
@@ -2052,7 +2054,7 @@ INSERT INTO `rb_pertanyaan_penilaian_jawab` (`id_pertanyaan_penilaian_jawab`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_predikat`
+-- Struktur dari tabel `rb_predikat`
 --
 
 CREATE TABLE `rb_predikat` (
@@ -2065,7 +2067,7 @@ CREATE TABLE `rb_predikat` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_predikat`
+-- Dumping data untuk tabel `rb_predikat`
 --
 
 INSERT INTO `rb_predikat` (`id_predikat`, `kode_kelas`, `nilai_a`, `nilai_b`, `grade`, `keterangan`) VALUES
@@ -2081,7 +2083,7 @@ INSERT INTO `rb_predikat` (`id_predikat`, `kode_kelas`, `nilai_a`, `nilai_b`, `g
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_psb_aktivasi`
+-- Struktur dari tabel `rb_psb_aktivasi`
 --
 
 CREATE TABLE `rb_psb_aktivasi` (
@@ -2094,7 +2096,7 @@ CREATE TABLE `rb_psb_aktivasi` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_psb_aktivasi`
+-- Dumping data untuk tabel `rb_psb_aktivasi`
 --
 
 INSERT INTO `rb_psb_aktivasi` (`id_aktivasi`, `kode_pendaftaran`, `nama_lengkap`, `status`, `proses`, `waktu_input`) VALUES
@@ -2106,7 +2108,7 @@ INSERT INTO `rb_psb_aktivasi` (`id_aktivasi`, `kode_pendaftaran`, `nama_lengkap`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_psb_pendaftaran`
+-- Struktur dari tabel `rb_psb_pendaftaran`
 --
 
 CREATE TABLE `rb_psb_pendaftaran` (
@@ -2160,7 +2162,7 @@ CREATE TABLE `rb_psb_pendaftaran` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_psb_pendaftaran`
+-- Dumping data untuk tabel `rb_psb_pendaftaran`
 --
 
 INSERT INTO `rb_psb_pendaftaran` (`id_pendaftaran`, `kode_pendaftaran`, `nama`, `nama_panggilan`, `no_induk`, `id_jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `id_agama`, `anak_ke`, `jumlah_saudara`, `status_dalam_keluarga`, `alamat_siswa`, `no_telpon`, `berat_badan`, `tinggi_badan`, `golongan_darah`, `penyakit_pernah_diderita`, `diterima_dikelas`, `diterima_tanggal`, `sekolah_asal`, `alamat_sekolah_asal`, `nama_ayah`, `tempat_lahir_ayah`, `tanggal_lahir_ayah`, `agama_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `alamat_rumah_ayah`, `telpon_rumah_ayah`, `alamat_kantor_ayah`, `telpon_kantor_ayah`, `nama_ibu`, `tempat_lahir_ibu`, `tanggal_lahir_ibu`, `agama_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `alamat_rumah_ibu`, `telpon_rumah_ibu`, `alamat_kantor_ibu`, `telpon_kantor_ibu`, `nama_wali`, `alamat_wali`, `no_telpon_wali`, `status`, `waktu_daftar`) VALUES
@@ -2171,7 +2173,7 @@ INSERT INTO `rb_psb_pendaftaran` (`id_pendaftaran`, `kode_pendaftaran`, `nama`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_psb_pendaftaran_saudara`
+-- Struktur dari tabel `rb_psb_pendaftaran_saudara`
 --
 
 CREATE TABLE `rb_psb_pendaftaran_saudara` (
@@ -2183,7 +2185,7 @@ CREATE TABLE `rb_psb_pendaftaran_saudara` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_psb_pendaftaran_saudara`
+-- Dumping data untuk tabel `rb_psb_pendaftaran_saudara`
 --
 
 INSERT INTO `rb_psb_pendaftaran_saudara` (`id_saudara`, `id_pendaftaran`, `nama_saudara`, `umur_saudara`, `pendidikan_saudara`) VALUES
@@ -2199,7 +2201,7 @@ INSERT INTO `rb_psb_pendaftaran_saudara` (`id_saudara`, `id_pendaftaran`, `nama_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_quiz_ujian`
+-- Struktur dari tabel `rb_quiz_ujian`
 --
 
 CREATE TABLE `rb_quiz_ujian` (
@@ -2211,7 +2213,7 @@ CREATE TABLE `rb_quiz_ujian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_quiz_ujian`
+-- Dumping data untuk tabel `rb_quiz_ujian`
 --
 
 INSERT INTO `rb_quiz_ujian` (`id_quiz_ujian`, `id_kategori_quiz_ujian`, `kodejdwl`, `keterangan`, `batas_waktu`) VALUES
@@ -2225,7 +2227,7 @@ INSERT INTO `rb_quiz_ujian` (`id_quiz_ujian`, `id_kategori_quiz_ujian`, `kodejdw
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_ruangan`
+-- Struktur dari tabel `rb_ruangan`
 --
 
 CREATE TABLE `rb_ruangan` (
@@ -2239,7 +2241,7 @@ CREATE TABLE `rb_ruangan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_ruangan`
+-- Dumping data untuk tabel `rb_ruangan`
 --
 
 INSERT INTO `rb_ruangan` (`kode_ruangan`, `kode_gedung`, `nama_ruangan`, `kapasitas_belajar`, `kapasitas_ujian`, `keterangan`, `aktif`) VALUES
@@ -2251,7 +2253,7 @@ INSERT INTO `rb_ruangan` (`kode_ruangan`, `kode_gedung`, `nama_ruangan`, `kapasi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_sesi`
+-- Struktur dari tabel `rb_sesi`
 --
 
 CREATE TABLE `rb_sesi` (
@@ -2262,7 +2264,7 @@ CREATE TABLE `rb_sesi` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_sesi`
+-- Dumping data untuk tabel `rb_sesi`
 --
 
 INSERT INTO `rb_sesi` (`id_sesi`, `nama_sesi`, `keterangan`, `aktif`) VALUES
@@ -2276,7 +2278,7 @@ INSERT INTO `rb_sesi` (`id_sesi`, `nama_sesi`, `keterangan`, `aktif`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_siswa`
+-- Struktur dari tabel `rb_siswa`
 --
 
 CREATE TABLE `rb_siswa` (
@@ -2336,7 +2338,7 @@ CREATE TABLE `rb_siswa` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_siswa`
+-- Dumping data untuk tabel `rb_siswa`
 --
 
 INSERT INTO `rb_siswa` (`id_siswa`, `nipd`, `password`, `nama`, `id_jenis_kelamin`, `nisn`, `tempat_lahir`, `tanggal_lahir`, `nik`, `id_agama`, `kebutuhan_khusus`, `alamat`, `rt`, `rw`, `dusun`, `kelurahan`, `kecamatan`, `kode_pos`, `jenis_tinggal`, `alat_transportasi`, `telepon`, `hp`, `email`, `skhun`, `penerima_kps`, `no_kps`, `foto`, `nama_ayah`, `tahun_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `kebutuhan_khusus_ayah`, `no_telpon_ayah`, `nama_ibu`, `tahun_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `kebutuhan_khusus_ibu`, `no_telpon_ibu`, `nama_wali`, `tahun_lahir_wali`, `pendidikan_wali`, `pekerjaan_wali`, `penghasilan_wali`, `angkatan`, `status_awal`, `status_siswa`, `tingkat`, `kode_kelas`, `kode_jurusan`, `id_sesi`) VALUES
@@ -2652,7 +2654,7 @@ INSERT INTO `rb_siswa` (`id_siswa`, `nipd`, `password`, `nama`, `id_jenis_kelami
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_sms`
+-- Struktur dari tabel `rb_sms`
 --
 
 CREATE TABLE `rb_sms` (
@@ -2662,7 +2664,7 @@ CREATE TABLE `rb_sms` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_sms`
+-- Dumping data untuk tabel `rb_sms`
 --
 
 INSERT INTO `rb_sms` (`id_sms`, `nohp`, `pesan`) VALUES
@@ -2671,7 +2673,7 @@ INSERT INTO `rb_sms` (`id_sms`, `nohp`, `pesan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_sms_autoreply`
+-- Struktur dari tabel `rb_sms_autoreply`
 --
 
 CREATE TABLE `rb_sms_autoreply` (
@@ -2682,7 +2684,7 @@ CREATE TABLE `rb_sms_autoreply` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_sms_autoreply`
+-- Dumping data untuk tabel `rb_sms_autoreply`
 --
 
 INSERT INTO `rb_sms_autoreply` (`id_autoreply`, `keyword`, `isi_pesan`, `waktu`) VALUES
@@ -2692,7 +2694,7 @@ INSERT INTO `rb_sms_autoreply` (`id_autoreply`, `keyword`, `isi_pesan`, `waktu`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_sms_inbox`
+-- Struktur dari tabel `rb_sms_inbox`
 --
 
 CREATE TABLE `rb_sms_inbox` (
@@ -2706,7 +2708,7 @@ CREATE TABLE `rb_sms_inbox` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_sms_outbox`
+-- Struktur dari tabel `rb_sms_outbox`
 --
 
 CREATE TABLE `rb_sms_outbox` (
@@ -2719,7 +2721,7 @@ CREATE TABLE `rb_sms_outbox` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_status_keaktifan`
+-- Struktur dari tabel `rb_status_keaktifan`
 --
 
 CREATE TABLE `rb_status_keaktifan` (
@@ -2729,7 +2731,7 @@ CREATE TABLE `rb_status_keaktifan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_status_keaktifan`
+-- Dumping data untuk tabel `rb_status_keaktifan`
 --
 
 INSERT INTO `rb_status_keaktifan` (`id_status_keaktifan`, `nama_status_keaktifan`, `keterangan`) VALUES
@@ -2739,7 +2741,7 @@ INSERT INTO `rb_status_keaktifan` (`id_status_keaktifan`, `nama_status_keaktifan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_status_kepegawaian`
+-- Struktur dari tabel `rb_status_kepegawaian`
 --
 
 CREATE TABLE `rb_status_kepegawaian` (
@@ -2749,7 +2751,7 @@ CREATE TABLE `rb_status_kepegawaian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_status_kepegawaian`
+-- Dumping data untuk tabel `rb_status_kepegawaian`
 --
 
 INSERT INTO `rb_status_kepegawaian` (`id_status_kepegawaian`, `status_kepegawaian`, `keterangan`) VALUES
@@ -2762,7 +2764,7 @@ INSERT INTO `rb_status_kepegawaian` (`id_status_kepegawaian`, `status_kepegawaia
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_status_pernikahan`
+-- Struktur dari tabel `rb_status_pernikahan`
 --
 
 CREATE TABLE `rb_status_pernikahan` (
@@ -2772,7 +2774,7 @@ CREATE TABLE `rb_status_pernikahan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_status_pernikahan`
+-- Dumping data untuk tabel `rb_status_pernikahan`
 --
 
 INSERT INTO `rb_status_pernikahan` (`id_status_pernikahan`, `status_pernikahan`, `keterangan`) VALUES
@@ -2782,7 +2784,7 @@ INSERT INTO `rb_status_pernikahan` (`id_status_pernikahan`, `status_pernikahan`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_tahun_akademik`
+-- Struktur dari tabel `rb_tahun_akademik`
 --
 
 CREATE TABLE `rb_tahun_akademik` (
@@ -2793,7 +2795,7 @@ CREATE TABLE `rb_tahun_akademik` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_tahun_akademik`
+-- Dumping data untuk tabel `rb_tahun_akademik`
 --
 
 INSERT INTO `rb_tahun_akademik` (`id_tahun_akademik`, `nama_tahun`, `keterangan`, `aktif`) VALUES
@@ -2805,7 +2807,7 @@ INSERT INTO `rb_tahun_akademik` (`id_tahun_akademik`, `nama_tahun`, `keterangan`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_users`
+-- Struktur dari tabel `rb_users`
 --
 
 CREATE TABLE `rb_users` (
@@ -2821,18 +2823,20 @@ CREATE TABLE `rb_users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data for table `rb_users`
+-- Dumping data untuk tabel `rb_users`
 --
 
 INSERT INTO `rb_users` (`id_user`, `username`, `password`, `nama_lengkap`, `email`, `no_telpon`, `jabatan`, `level`, `aktif`) VALUES
-(1, 'admin', '3e39b3844837bdefc8017fbcb386ea302af877fb17baa09d0a1bd34b67bbf2b34fba314bbcab450f5f3f73771b7aea956ba3320defda029723f4fdff7dfa007b', 'Administrator', 'sdedek15@gmail.com', '087768151554', 'Kepala IT', 'superuser', 'Y'),
+(1, 'admin', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', 'Administrator', 'sdedek15@gmail.com', '087768151554', 'Kepala IT', 'superuser', 'Y'),
 (2, '12345678', '3e39b3844837bdefc8017fbcb386ea302af877fb17baa09d0a1bd34b67bbf2b34fba314bbcab450f5f3f73771b7aea956ba3320defda029723f4fdff7dfa007b', 'Dedek Setiawan', 'sdedek15@gmail.com', '087768151554', 'Kepala Sekolah', 'kepala', 'Y'),
-(3, 'satpam', '3e39b3844837bdefc8017fbcb386ea302af877fb17baa09d0a1bd34b67bbf2b34fba314bbcab450f5f3f73771b7aea956ba3320defda029723f4fdff7dfa007b', 'budi', 'ranggaaja65@ymail.com', '085276475777', 'satpam', 'satpam', 'Y');
+(3, 'satpam', '3e39b3844837bdefc8017fbcb386ea302af877fb17baa09d0a1bd34b67bbf2b34fba314bbcab450f5f3f73771b7aea956ba3320defda029723f4fdff7dfa007b', 'budi', 'ranggaaja65@ymail.com', '085276475777', 'satpam', 'satpam', 'Y'),
+(4, 'suhar', '12345', 'suhar', '', '', 'Kepala IT', 'superuser', 'Y'),
+(109, 'adminbaru', 'd7d2f602e155ba700ed76c48d9a48009b9383e8d17435bfb0fe8ad7c664d4002f16cc7a65c6fb066963714a794f96441ef7f9b9c1b1456acfb9225cbad474fb0', 'admin baru', '', '', 'staf IT', 'superuser', 'Y');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rb_users_aktivitas`
+-- Struktur dari tabel `rb_users_aktivitas`
 --
 
 CREATE TABLE `rb_users_aktivitas` (
@@ -2847,7 +2851,7 @@ CREATE TABLE `rb_users_aktivitas` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rb_users_aktivitas`
+-- Dumping data untuk tabel `rb_users_aktivitas`
 --
 
 INSERT INTO `rb_users_aktivitas` (`id_users_aktivitas`, `identitas`, `ip_address`, `browser`, `os`, `status`, `jam`, `tanggal`) VALUES
@@ -3207,746 +3211,813 @@ INSERT INTO `rb_users_aktivitas` (`id_users_aktivitas`, `identitas`, `ip_address
 (358, '0012', '192.168.1.1', 'Chrome 58.0.3029.110', 'Windows 7', 'guru', '12:49:32', '2017-05-21'),
 (359, '1', '192.168.1.1', 'Chrome 58.0.3029.110', 'Windows 7', 'superuser', '12:58:04', '2017-05-21'),
 (360, '1', '192.168.1.1', 'Chrome 58.0.3029.110', 'Windows 7', 'superuser', '13:17:23', '2017-05-21'),
-(361, '1', '::1', 'Chrome 46.0.2490.80', 'Windows 7', 'superuser', '12:52:36', '2017-07-29');
+(361, '1', '::1', 'Chrome 46.0.2490.80', 'Windows 7', 'superuser', '12:52:36', '2017-07-29'),
+(362, '4', '::1', 'Chrome 86.0.4240.198', 'Windows 10', 'superuser', '12:56:05', '2020-12-02'),
+(363, '9997521322', '::1', 'Chrome 86.0.4240.198', 'Windows 10', 'siswa', '16:31:01', '2020-12-02'),
+(364, '4', '::1', 'Chrome 104.0.0.0', 'Windows 10', 'superuser', '16:20:24', '2022-09-02'),
+(365, '4', '::1', 'Chrome 104.0.0.0', 'Windows 10', 'superuser', '17:38:23', '2022-09-06');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `rb_absensi_guru`
+-- Indeks untuk tabel `rb_absensi_guru`
 --
 ALTER TABLE `rb_absensi_guru`
   ADD PRIMARY KEY (`id_absensi_guru`);
 
 --
--- Indexes for table `rb_absensi_siswa`
+-- Indeks untuk tabel `rb_absensi_siswa`
 --
 ALTER TABLE `rb_absensi_siswa`
   ADD PRIMARY KEY (`id_absensi_siswa`);
 
 --
--- Indexes for table `rb_agama`
+-- Indeks untuk tabel `rb_agama`
 --
 ALTER TABLE `rb_agama`
   ADD PRIMARY KEY (`id_agama`);
 
 --
--- Indexes for table `rb_bank_pertanyaan_essai`
+-- Indeks untuk tabel `rb_bank_pertanyaan_essai`
 --
 ALTER TABLE `rb_bank_pertanyaan_essai`
   ADD PRIMARY KEY (`id_bank_pertanyaan_essai`);
 
 --
--- Indexes for table `rb_bank_pertanyaan_objektif`
+-- Indeks untuk tabel `rb_bank_pertanyaan_objektif`
 --
 ALTER TABLE `rb_bank_pertanyaan_objektif`
   ADD PRIMARY KEY (`id_bank_pertanyaan_objektif`);
 
 --
--- Indexes for table `rb_bar`
+-- Indeks untuk tabel `rb_bar`
 --
 ALTER TABLE `rb_bar`
   ADD PRIMARY KEY (`id_absen`);
 
 --
--- Indexes for table `rb_barcode`
+-- Indeks untuk tabel `rb_barcode`
 --
 ALTER TABLE `rb_barcode`
   ADD PRIMARY KEY (`id_absen`);
 
 --
--- Indexes for table `rb_elearning`
+-- Indeks untuk tabel `rb_elearning`
 --
 ALTER TABLE `rb_elearning`
   ADD PRIMARY KEY (`id_elearning`);
 
 --
--- Indexes for table `rb_elearning_jawab`
+-- Indeks untuk tabel `rb_elearning_jawab`
 --
 ALTER TABLE `rb_elearning_jawab`
   ADD PRIMARY KEY (`id_elearning_jawab`);
 
 --
--- Indexes for table `rb_forum_komentar`
+-- Indeks untuk tabel `rb_forum_komentar`
 --
 ALTER TABLE `rb_forum_komentar`
   ADD PRIMARY KEY (`id_forum_komentar`);
 
 --
--- Indexes for table `rb_forum_topic`
+-- Indeks untuk tabel `rb_forum_topic`
 --
 ALTER TABLE `rb_forum_topic`
   ADD PRIMARY KEY (`id_forum_topic`);
 
 --
--- Indexes for table `rb_gedung`
+-- Indeks untuk tabel `rb_gedung`
 --
 ALTER TABLE `rb_gedung`
   ADD PRIMARY KEY (`kode_gedung`);
 
 --
--- Indexes for table `rb_golongan`
+-- Indeks untuk tabel `rb_golongan`
 --
 ALTER TABLE `rb_golongan`
   ADD PRIMARY KEY (`id_golongan`);
 
 --
--- Indexes for table `rb_guru`
+-- Indeks untuk tabel `rb_guru`
 --
 ALTER TABLE `rb_guru`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indexes for table `rb_guru_akses`
+-- Indeks untuk tabel `rb_guru_akses`
 --
 ALTER TABLE `rb_guru_akses`
   ADD PRIMARY KEY (`id_guru_akses`);
 
 --
--- Indexes for table `rb_halaman`
+-- Indeks untuk tabel `rb_halaman`
 --
 ALTER TABLE `rb_halaman`
   ADD PRIMARY KEY (`id_halaman`);
 
 --
--- Indexes for table `rb_identitas_sekolah`
+-- Indeks untuk tabel `rb_identitas_sekolah`
 --
 ALTER TABLE `rb_identitas_sekolah`
   ADD PRIMARY KEY (`id_identitas_sekolah`);
 
 --
--- Indexes for table `rb_jadwal_pelajaran`
+-- Indeks untuk tabel `rb_jadwal_pelajaran`
 --
 ALTER TABLE `rb_jadwal_pelajaran`
   ADD PRIMARY KEY (`kodejdwl`);
 
 --
--- Indexes for table `rb_jawaban_essai`
+-- Indeks untuk tabel `rb_jawaban_essai`
 --
 ALTER TABLE `rb_jawaban_essai`
   ADD PRIMARY KEY (`id_jawaban_essai`);
 
 --
--- Indexes for table `rb_jawaban_objektif`
+-- Indeks untuk tabel `rb_jawaban_objektif`
 --
 ALTER TABLE `rb_jawaban_objektif`
   ADD PRIMARY KEY (`id_jawaban_objektif`);
 
 --
--- Indexes for table `rb_jenis_kelamin`
+-- Indeks untuk tabel `rb_jenis_kelamin`
 --
 ALTER TABLE `rb_jenis_kelamin`
   ADD PRIMARY KEY (`id_jenis_kelamin`);
 
 --
--- Indexes for table `rb_jenis_ptk`
+-- Indeks untuk tabel `rb_jenis_ptk`
 --
 ALTER TABLE `rb_jenis_ptk`
   ADD PRIMARY KEY (`id_jenis_ptk`);
 
 --
--- Indexes for table `rb_journal_list`
+-- Indeks untuk tabel `rb_journal_list`
 --
 ALTER TABLE `rb_journal_list`
   ADD PRIMARY KEY (`id_journal`);
 
 --
--- Indexes for table `rb_jurusan`
+-- Indeks untuk tabel `rb_jurusan`
 --
 ALTER TABLE `rb_jurusan`
   ADD PRIMARY KEY (`kode_jurusan`);
 
 --
--- Indexes for table `rb_kategori_elearning`
+-- Indeks untuk tabel `rb_kategori_elearning`
 --
 ALTER TABLE `rb_kategori_elearning`
   ADD PRIMARY KEY (`id_kategori_elearning`);
 
 --
--- Indexes for table `rb_kategori_quiz_ujian`
+-- Indeks untuk tabel `rb_kategori_quiz_ujian`
 --
 ALTER TABLE `rb_kategori_quiz_ujian`
   ADD PRIMARY KEY (`id_kategori_quiz_ujian`);
 
 --
--- Indexes for table `rb_kehadiran`
+-- Indeks untuk tabel `rb_kehadiran`
 --
 ALTER TABLE `rb_kehadiran`
   ADD PRIMARY KEY (`kode_kehadiran`);
 
 --
--- Indexes for table `rb_kelas`
+-- Indeks untuk tabel `rb_kelas`
 --
 ALTER TABLE `rb_kelas`
   ADD PRIMARY KEY (`kode_kelas`);
 
 --
--- Indexes for table `rb_kelompok_mata_pelajaran`
+-- Indeks untuk tabel `rb_kelompok_mata_pelajaran`
 --
 ALTER TABLE `rb_kelompok_mata_pelajaran`
   ADD PRIMARY KEY (`id_kelompok_mata_pelajaran`);
 
 --
--- Indexes for table `rb_keuangan_bayar`
+-- Indeks untuk tabel `rb_keuangan_bayar`
 --
 ALTER TABLE `rb_keuangan_bayar`
   ADD PRIMARY KEY (`id_keuangan_bayar`);
 
 --
--- Indexes for table `rb_keuangan_jenis`
+-- Indeks untuk tabel `rb_keuangan_jenis`
 --
 ALTER TABLE `rb_keuangan_jenis`
   ADD PRIMARY KEY (`id_keuangan_jenis`);
 
 --
--- Indexes for table `rb_kompetensi_dasar`
+-- Indeks untuk tabel `rb_kompetensi_dasar`
 --
 ALTER TABLE `rb_kompetensi_dasar`
   ADD PRIMARY KEY (`id_kompetensi_dasar`);
 
 --
--- Indexes for table `rb_kurikulum`
+-- Indeks untuk tabel `rb_kurikulum`
 --
 ALTER TABLE `rb_kurikulum`
   ADD PRIMARY KEY (`kode_kurikulum`);
 
 --
--- Indexes for table `rb_ledger`
+-- Indeks untuk tabel `rb_ledger`
 --
 ALTER TABLE `rb_ledger`
   ADD PRIMARY KEY (`id_ledger`);
 
 --
--- Indexes for table `rb_mata_pelajaran`
+-- Indeks untuk tabel `rb_mata_pelajaran`
 --
 ALTER TABLE `rb_mata_pelajaran`
   ADD PRIMARY KEY (`kode_pelajaran`);
 
 --
--- Indexes for table `rb_menu`
+-- Indeks untuk tabel `rb_menu`
 --
 ALTER TABLE `rb_menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indexes for table `rb_modul`
+-- Indeks untuk tabel `rb_modul`
 --
 ALTER TABLE `rb_modul`
   ADD PRIMARY KEY (`id_modul`);
 
 --
--- Indexes for table `rb_nilai_extrakulikuler`
+-- Indeks untuk tabel `rb_nilai_extrakulikuler`
 --
 ALTER TABLE `rb_nilai_extrakulikuler`
   ADD PRIMARY KEY (`id_nilai_extrakulikuler`);
 
 --
--- Indexes for table `rb_nilai_keterampilan`
+-- Indeks untuk tabel `rb_nilai_keterampilan`
 --
 ALTER TABLE `rb_nilai_keterampilan`
   ADD PRIMARY KEY (`id_nilai_keterampilan`);
 
 --
--- Indexes for table `rb_nilai_pengetahuan`
+-- Indeks untuk tabel `rb_nilai_pengetahuan`
 --
 ALTER TABLE `rb_nilai_pengetahuan`
   ADD PRIMARY KEY (`id_nilai_pengetahuan`);
 
 --
--- Indexes for table `rb_nilai_pengetahuan_semester`
+-- Indeks untuk tabel `rb_nilai_pengetahuan_semester`
 --
 ALTER TABLE `rb_nilai_pengetahuan_semester`
   ADD PRIMARY KEY (`id_nilai_pengetahuan_semester`);
 
 --
--- Indexes for table `rb_nilai_pertanyaan_essai`
+-- Indeks untuk tabel `rb_nilai_pertanyaan_essai`
 --
 ALTER TABLE `rb_nilai_pertanyaan_essai`
   ADD PRIMARY KEY (`id_nilai_pertanyaan_essai`);
 
 --
--- Indexes for table `rb_nilai_prestasi`
+-- Indeks untuk tabel `rb_nilai_prestasi`
 --
 ALTER TABLE `rb_nilai_prestasi`
   ADD PRIMARY KEY (`id_nilai_prestasi`);
 
 --
--- Indexes for table `rb_nilai_sikap`
+-- Indeks untuk tabel `rb_nilai_sikap`
 --
 ALTER TABLE `rb_nilai_sikap`
   ADD PRIMARY KEY (`id_nilai_sikap`);
 
 --
--- Indexes for table `rb_nilai_sikap_indikator`
+-- Indeks untuk tabel `rb_nilai_sikap_indikator`
 --
 ALTER TABLE `rb_nilai_sikap_indikator`
   ADD PRIMARY KEY (`kode_indikator`);
 
 --
--- Indexes for table `rb_nilai_sikap_semester`
+-- Indeks untuk tabel `rb_nilai_sikap_semester`
 --
 ALTER TABLE `rb_nilai_sikap_semester`
   ADD PRIMARY KEY (`id_nilai_sikap_semester`);
 
 --
--- Indexes for table `rb_nilai_uts`
+-- Indeks untuk tabel `rb_nilai_uts`
 --
 ALTER TABLE `rb_nilai_uts`
   ADD PRIMARY KEY (`id_nilai_uts`);
 
 --
--- Indexes for table `rb_peringkat`
+-- Indeks untuk tabel `rb_peringkat`
 --
 ALTER TABLE `rb_peringkat`
   ADD PRIMARY KEY (`id_peringkat`);
 
 --
--- Indexes for table `rb_pertanyaan_essai`
+-- Indeks untuk tabel `rb_pertanyaan_essai`
 --
 ALTER TABLE `rb_pertanyaan_essai`
   ADD PRIMARY KEY (`id_pertanyaan_essai`);
 
 --
--- Indexes for table `rb_pertanyaan_objektif`
+-- Indeks untuk tabel `rb_pertanyaan_objektif`
 --
 ALTER TABLE `rb_pertanyaan_objektif`
   ADD PRIMARY KEY (`id_pertanyaan_objektif`);
 
 --
--- Indexes for table `rb_pertanyaan_penilaian`
+-- Indeks untuk tabel `rb_pertanyaan_penilaian`
 --
 ALTER TABLE `rb_pertanyaan_penilaian`
   ADD PRIMARY KEY (`id_pertanyaan_penilaian`);
 
 --
--- Indexes for table `rb_pertanyaan_penilaian_jawab`
+-- Indeks untuk tabel `rb_pertanyaan_penilaian_jawab`
 --
 ALTER TABLE `rb_pertanyaan_penilaian_jawab`
   ADD PRIMARY KEY (`id_pertanyaan_penilaian_jawab`);
 
 --
--- Indexes for table `rb_predikat`
+-- Indeks untuk tabel `rb_predikat`
 --
 ALTER TABLE `rb_predikat`
   ADD PRIMARY KEY (`id_predikat`);
 
 --
--- Indexes for table `rb_psb_aktivasi`
+-- Indeks untuk tabel `rb_psb_aktivasi`
 --
 ALTER TABLE `rb_psb_aktivasi`
   ADD PRIMARY KEY (`id_aktivasi`);
 
 --
--- Indexes for table `rb_psb_pendaftaran`
+-- Indeks untuk tabel `rb_psb_pendaftaran`
 --
 ALTER TABLE `rb_psb_pendaftaran`
   ADD PRIMARY KEY (`id_pendaftaran`);
 
 --
--- Indexes for table `rb_psb_pendaftaran_saudara`
+-- Indeks untuk tabel `rb_psb_pendaftaran_saudara`
 --
 ALTER TABLE `rb_psb_pendaftaran_saudara`
   ADD PRIMARY KEY (`id_saudara`);
 
 --
--- Indexes for table `rb_quiz_ujian`
+-- Indeks untuk tabel `rb_quiz_ujian`
 --
 ALTER TABLE `rb_quiz_ujian`
   ADD PRIMARY KEY (`id_quiz_ujian`);
 
 --
--- Indexes for table `rb_ruangan`
+-- Indeks untuk tabel `rb_ruangan`
 --
 ALTER TABLE `rb_ruangan`
   ADD PRIMARY KEY (`kode_ruangan`);
 
 --
--- Indexes for table `rb_sesi`
+-- Indeks untuk tabel `rb_sesi`
 --
 ALTER TABLE `rb_sesi`
   ADD PRIMARY KEY (`id_sesi`);
 
 --
--- Indexes for table `rb_siswa`
+-- Indeks untuk tabel `rb_siswa`
 --
 ALTER TABLE `rb_siswa`
   ADD PRIMARY KEY (`id_siswa`);
 
 --
--- Indexes for table `rb_sms`
+-- Indeks untuk tabel `rb_sms`
 --
 ALTER TABLE `rb_sms`
   ADD PRIMARY KEY (`id_sms`);
 
 --
--- Indexes for table `rb_sms_autoreply`
+-- Indeks untuk tabel `rb_sms_autoreply`
 --
 ALTER TABLE `rb_sms_autoreply`
   ADD PRIMARY KEY (`id_autoreply`);
 
 --
--- Indexes for table `rb_sms_inbox`
+-- Indeks untuk tabel `rb_sms_inbox`
 --
 ALTER TABLE `rb_sms_inbox`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rb_sms_outbox`
+-- Indeks untuk tabel `rb_sms_outbox`
 --
 ALTER TABLE `rb_sms_outbox`
   ADD PRIMARY KEY (`id_outbox`);
 
 --
--- Indexes for table `rb_status_keaktifan`
+-- Indeks untuk tabel `rb_status_keaktifan`
 --
 ALTER TABLE `rb_status_keaktifan`
   ADD PRIMARY KEY (`id_status_keaktifan`);
 
 --
--- Indexes for table `rb_status_kepegawaian`
+-- Indeks untuk tabel `rb_status_kepegawaian`
 --
 ALTER TABLE `rb_status_kepegawaian`
   ADD PRIMARY KEY (`id_status_kepegawaian`);
 
 --
--- Indexes for table `rb_status_pernikahan`
+-- Indeks untuk tabel `rb_status_pernikahan`
 --
 ALTER TABLE `rb_status_pernikahan`
   ADD PRIMARY KEY (`id_status_pernikahan`);
 
 --
--- Indexes for table `rb_tahun_akademik`
+-- Indeks untuk tabel `rb_tahun_akademik`
 --
 ALTER TABLE `rb_tahun_akademik`
   ADD PRIMARY KEY (`id_tahun_akademik`);
 
 --
--- Indexes for table `rb_users`
+-- Indeks untuk tabel `rb_users`
 --
 ALTER TABLE `rb_users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `rb_users_aktivitas`
+-- Indeks untuk tabel `rb_users_aktivitas`
 --
 ALTER TABLE `rb_users_aktivitas`
   ADD PRIMARY KEY (`id_users_aktivitas`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `rb_absensi_guru`
+-- AUTO_INCREMENT untuk tabel `rb_absensi_guru`
 --
 ALTER TABLE `rb_absensi_guru`
   MODIFY `id_absensi_guru` int(5) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `rb_absensi_siswa`
+-- AUTO_INCREMENT untuk tabel `rb_absensi_siswa`
 --
 ALTER TABLE `rb_absensi_siswa`
   MODIFY `id_absensi_siswa` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+
 --
--- AUTO_INCREMENT for table `rb_agama`
+-- AUTO_INCREMENT untuk tabel `rb_agama`
 --
 ALTER TABLE `rb_agama`
   MODIFY `id_agama` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_bank_pertanyaan_essai`
+-- AUTO_INCREMENT untuk tabel `rb_bank_pertanyaan_essai`
 --
 ALTER TABLE `rb_bank_pertanyaan_essai`
   MODIFY `id_bank_pertanyaan_essai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
--- AUTO_INCREMENT for table `rb_bank_pertanyaan_objektif`
+-- AUTO_INCREMENT untuk tabel `rb_bank_pertanyaan_objektif`
 --
 ALTER TABLE `rb_bank_pertanyaan_objektif`
   MODIFY `id_bank_pertanyaan_objektif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
--- AUTO_INCREMENT for table `rb_bar`
+-- AUTO_INCREMENT untuk tabel `rb_bar`
 --
 ALTER TABLE `rb_bar`
   MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
 --
--- AUTO_INCREMENT for table `rb_barcode`
+-- AUTO_INCREMENT untuk tabel `rb_barcode`
 --
 ALTER TABLE `rb_barcode`
   MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
 --
--- AUTO_INCREMENT for table `rb_elearning`
+-- AUTO_INCREMENT untuk tabel `rb_elearning`
 --
 ALTER TABLE `rb_elearning`
   MODIFY `id_elearning` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
--- AUTO_INCREMENT for table `rb_elearning_jawab`
+-- AUTO_INCREMENT untuk tabel `rb_elearning_jawab`
 --
 ALTER TABLE `rb_elearning_jawab`
   MODIFY `id_elearning_jawab` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_forum_komentar`
+-- AUTO_INCREMENT untuk tabel `rb_forum_komentar`
 --
 ALTER TABLE `rb_forum_komentar`
   MODIFY `id_forum_komentar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
--- AUTO_INCREMENT for table `rb_forum_topic`
+-- AUTO_INCREMENT untuk tabel `rb_forum_topic`
 --
 ALTER TABLE `rb_forum_topic`
   MODIFY `id_forum_topic` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `rb_golongan`
+-- AUTO_INCREMENT untuk tabel `rb_golongan`
 --
 ALTER TABLE `rb_golongan`
   MODIFY `id_golongan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `rb_guru_akses`
+-- AUTO_INCREMENT untuk tabel `rb_guru_akses`
 --
 ALTER TABLE `rb_guru_akses`
   MODIFY `id_guru_akses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `rb_halaman`
+-- AUTO_INCREMENT untuk tabel `rb_halaman`
 --
 ALTER TABLE `rb_halaman`
   MODIFY `id_halaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_identitas_sekolah`
+-- AUTO_INCREMENT untuk tabel `rb_identitas_sekolah`
 --
 ALTER TABLE `rb_identitas_sekolah`
   MODIFY `id_identitas_sekolah` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `rb_jadwal_pelajaran`
+-- AUTO_INCREMENT untuk tabel `rb_jadwal_pelajaran`
 --
 ALTER TABLE `rb_jadwal_pelajaran`
   MODIFY `kodejdwl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
--- AUTO_INCREMENT for table `rb_jawaban_essai`
+-- AUTO_INCREMENT untuk tabel `rb_jawaban_essai`
 --
 ALTER TABLE `rb_jawaban_essai`
   MODIFY `id_jawaban_essai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `rb_jawaban_objektif`
+-- AUTO_INCREMENT untuk tabel `rb_jawaban_objektif`
 --
 ALTER TABLE `rb_jawaban_objektif`
   MODIFY `id_jawaban_objektif` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
 --
--- AUTO_INCREMENT for table `rb_jenis_kelamin`
+-- AUTO_INCREMENT untuk tabel `rb_jenis_kelamin`
 --
 ALTER TABLE `rb_jenis_kelamin`
   MODIFY `id_jenis_kelamin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_jenis_ptk`
+-- AUTO_INCREMENT untuk tabel `rb_jenis_ptk`
 --
 ALTER TABLE `rb_jenis_ptk`
   MODIFY `id_jenis_ptk` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_journal_list`
+-- AUTO_INCREMENT untuk tabel `rb_journal_list`
 --
 ALTER TABLE `rb_journal_list`
   MODIFY `id_journal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
 --
--- AUTO_INCREMENT for table `rb_kategori_elearning`
+-- AUTO_INCREMENT untuk tabel `rb_kategori_elearning`
 --
 ALTER TABLE `rb_kategori_elearning`
   MODIFY `id_kategori_elearning` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_kategori_quiz_ujian`
+-- AUTO_INCREMENT untuk tabel `rb_kategori_quiz_ujian`
 --
 ALTER TABLE `rb_kategori_quiz_ujian`
   MODIFY `id_kategori_quiz_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_kelompok_mata_pelajaran`
+-- AUTO_INCREMENT untuk tabel `rb_kelompok_mata_pelajaran`
 --
 ALTER TABLE `rb_kelompok_mata_pelajaran`
   MODIFY `id_kelompok_mata_pelajaran` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_keuangan_bayar`
+-- AUTO_INCREMENT untuk tabel `rb_keuangan_bayar`
 --
 ALTER TABLE `rb_keuangan_bayar`
   MODIFY `id_keuangan_bayar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
--- AUTO_INCREMENT for table `rb_keuangan_jenis`
+-- AUTO_INCREMENT untuk tabel `rb_keuangan_jenis`
 --
 ALTER TABLE `rb_keuangan_jenis`
   MODIFY `id_keuangan_jenis` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `rb_kompetensi_dasar`
+-- AUTO_INCREMENT untuk tabel `rb_kompetensi_dasar`
 --
 ALTER TABLE `rb_kompetensi_dasar`
   MODIFY `id_kompetensi_dasar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
--- AUTO_INCREMENT for table `rb_kurikulum`
+-- AUTO_INCREMENT untuk tabel `rb_kurikulum`
 --
 ALTER TABLE `rb_kurikulum`
   MODIFY `kode_kurikulum` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `rb_ledger`
+-- AUTO_INCREMENT untuk tabel `rb_ledger`
 --
 ALTER TABLE `rb_ledger`
   MODIFY `id_ledger` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+
 --
--- AUTO_INCREMENT for table `rb_menu`
+-- AUTO_INCREMENT untuk tabel `rb_menu`
 --
 ALTER TABLE `rb_menu`
   MODIFY `id_menu` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+
 --
--- AUTO_INCREMENT for table `rb_modul`
+-- AUTO_INCREMENT untuk tabel `rb_modul`
 --
 ALTER TABLE `rb_modul`
   MODIFY `id_modul` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_extrakulikuler`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_extrakulikuler`
 --
 ALTER TABLE `rb_nilai_extrakulikuler`
   MODIFY `id_nilai_extrakulikuler` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_keterampilan`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_keterampilan`
 --
 ALTER TABLE `rb_nilai_keterampilan`
   MODIFY `id_nilai_keterampilan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_pengetahuan`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_pengetahuan`
 --
 ALTER TABLE `rb_nilai_pengetahuan`
   MODIFY `id_nilai_pengetahuan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_pengetahuan_semester`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_pengetahuan_semester`
 --
 ALTER TABLE `rb_nilai_pengetahuan_semester`
   MODIFY `id_nilai_pengetahuan_semester` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_pertanyaan_essai`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_pertanyaan_essai`
 --
 ALTER TABLE `rb_nilai_pertanyaan_essai`
   MODIFY `id_nilai_pertanyaan_essai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_prestasi`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_prestasi`
 --
 ALTER TABLE `rb_nilai_prestasi`
   MODIFY `id_nilai_prestasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_sikap`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_sikap`
 --
 ALTER TABLE `rb_nilai_sikap`
   MODIFY `id_nilai_sikap` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_sikap_semester`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_sikap_semester`
 --
 ALTER TABLE `rb_nilai_sikap_semester`
   MODIFY `id_nilai_sikap_semester` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_nilai_uts`
+-- AUTO_INCREMENT untuk tabel `rb_nilai_uts`
 --
 ALTER TABLE `rb_nilai_uts`
   MODIFY `id_nilai_uts` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_peringkat`
+-- AUTO_INCREMENT untuk tabel `rb_peringkat`
 --
 ALTER TABLE `rb_peringkat`
   MODIFY `id_peringkat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+
 --
--- AUTO_INCREMENT for table `rb_pertanyaan_essai`
+-- AUTO_INCREMENT untuk tabel `rb_pertanyaan_essai`
 --
 ALTER TABLE `rb_pertanyaan_essai`
   MODIFY `id_pertanyaan_essai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
 --
--- AUTO_INCREMENT for table `rb_pertanyaan_objektif`
+-- AUTO_INCREMENT untuk tabel `rb_pertanyaan_objektif`
 --
 ALTER TABLE `rb_pertanyaan_objektif`
   MODIFY `id_pertanyaan_objektif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
--- AUTO_INCREMENT for table `rb_pertanyaan_penilaian`
+-- AUTO_INCREMENT untuk tabel `rb_pertanyaan_penilaian`
 --
 ALTER TABLE `rb_pertanyaan_penilaian`
   MODIFY `id_pertanyaan_penilaian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `rb_pertanyaan_penilaian_jawab`
+-- AUTO_INCREMENT untuk tabel `rb_pertanyaan_penilaian_jawab`
 --
 ALTER TABLE `rb_pertanyaan_penilaian_jawab`
   MODIFY `id_pertanyaan_penilaian_jawab` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
--- AUTO_INCREMENT for table `rb_predikat`
+-- AUTO_INCREMENT untuk tabel `rb_predikat`
 --
 ALTER TABLE `rb_predikat`
   MODIFY `id_predikat` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `rb_psb_aktivasi`
+-- AUTO_INCREMENT untuk tabel `rb_psb_aktivasi`
 --
 ALTER TABLE `rb_psb_aktivasi`
   MODIFY `id_aktivasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `rb_psb_pendaftaran`
+-- AUTO_INCREMENT untuk tabel `rb_psb_pendaftaran`
 --
 ALTER TABLE `rb_psb_pendaftaran`
   MODIFY `id_pendaftaran` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `rb_psb_pendaftaran_saudara`
+-- AUTO_INCREMENT untuk tabel `rb_psb_pendaftaran_saudara`
 --
 ALTER TABLE `rb_psb_pendaftaran_saudara`
   MODIFY `id_saudara` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
--- AUTO_INCREMENT for table `rb_quiz_ujian`
+-- AUTO_INCREMENT untuk tabel `rb_quiz_ujian`
 --
 ALTER TABLE `rb_quiz_ujian`
   MODIFY `id_quiz_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT for table `rb_sesi`
+-- AUTO_INCREMENT untuk tabel `rb_sesi`
 --
 ALTER TABLE `rb_sesi`
   MODIFY `id_sesi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `rb_siswa`
+-- AUTO_INCREMENT untuk tabel `rb_siswa`
 --
 ALTER TABLE `rb_siswa`
   MODIFY `id_siswa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3098;
+
 --
--- AUTO_INCREMENT for table `rb_sms`
+-- AUTO_INCREMENT untuk tabel `rb_sms`
 --
 ALTER TABLE `rb_sms`
   MODIFY `id_sms` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `rb_sms_autoreply`
+-- AUTO_INCREMENT untuk tabel `rb_sms_autoreply`
 --
 ALTER TABLE `rb_sms_autoreply`
   MODIFY `id_autoreply` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_sms_inbox`
+-- AUTO_INCREMENT untuk tabel `rb_sms_inbox`
 --
 ALTER TABLE `rb_sms_inbox`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_sms_outbox`
+-- AUTO_INCREMENT untuk tabel `rb_sms_outbox`
 --
 ALTER TABLE `rb_sms_outbox`
   MODIFY `id_outbox` int(5) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `rb_status_keaktifan`
+-- AUTO_INCREMENT untuk tabel `rb_status_keaktifan`
 --
 ALTER TABLE `rb_status_keaktifan`
   MODIFY `id_status_keaktifan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_status_kepegawaian`
+-- AUTO_INCREMENT untuk tabel `rb_status_kepegawaian`
 --
 ALTER TABLE `rb_status_kepegawaian`
   MODIFY `id_status_kepegawaian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `rb_status_pernikahan`
+-- AUTO_INCREMENT untuk tabel `rb_status_pernikahan`
 --
 ALTER TABLE `rb_status_pernikahan`
   MODIFY `id_status_pernikahan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `rb_tahun_akademik`
+-- AUTO_INCREMENT untuk tabel `rb_tahun_akademik`
 --
 ALTER TABLE `rb_tahun_akademik`
   MODIFY `id_tahun_akademik` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20164;
+
 --
--- AUTO_INCREMENT for table `rb_users`
+-- AUTO_INCREMENT untuk tabel `rb_users`
 --
 ALTER TABLE `rb_users`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+
 --
--- AUTO_INCREMENT for table `rb_users_aktivitas`
+-- AUTO_INCREMENT untuk tabel `rb_users_aktivitas`
 --
 ALTER TABLE `rb_users_aktivitas`
-  MODIFY `id_users_aktivitas` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=362;
+  MODIFY `id_users_aktivitas` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
