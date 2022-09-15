@@ -1,4 +1,10 @@
-<?php if ($_GET[act]==''){ ?> 
+<?php 
+  include  "../fungsi/timezone.php";
+  $date = date('Y');
+  $date1 = $date - 5;
+  $date2 = $date + 5;
+  if ($_GET[act]==''){ 
+?> 
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
@@ -27,7 +33,7 @@
                         <th style='width:40px'>No</th>
                         <th>Kode Tahun Akademik</th>
                         <th>Nama Tahun</th>
-                        <th>Keterangan</th>
+                        <th>Tahun Ajar</th>
                         <th>Aktif</th>
                         <?php if($_SESSION[level]!='kepala'){ ?>
                         <th style='width:70px'>Action</th>
@@ -42,7 +48,7 @@
                     echo "<tr><td>$no</td>
                               <td>$r[id_tahun_akademik]</td>
                               <td>$r[nama_tahun]</td>
-                              <td>$r[keterangan]</td>
+                              <td>$r[tahun_ajar]</td>
                               <td>$r[aktif]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
@@ -67,9 +73,12 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
+        if($_POST[d] == 'Ya'){
+          $query = mysql_query("UPDATE rb_tahun_akademik SET aktif = 'Tidak'");
+        }
         $query = mysql_query("UPDATE rb_tahun_akademik SET id_tahun_akademik = '$_POST[a]',
                                          nama_tahun = '$_POST[b]',
-                                         keterangan = '$_POST[c]',
+                                         tahun_ajar = '$_POST[c]',
                                          aktif = '$_POST[d]' where id_tahun_akademik='$_POST[id]'");
         if ($query){
           echo "<script>document.location='index.php?view=tahunakademik&sukses';</script>";
@@ -92,7 +101,17 @@
                     <input type='hidden' name='id' value='$s[id_tahun_akademik]'>
                     <tr><th width='120px' scope='row'>Kode Tahun</th> <td><input type='text' class='form-control' name='a' value='$s[id_tahun_akademik]'> </td></tr>
                     <tr><th scope='row'>Nama Tahun</th>           <td><input type='text' class='form-control' name='b' value='$s[nama_tahun]'></td></tr>
-                    <tr><th scope='row'>Keterangan</th>           <td><input type='text' class='form-control' name='c' value='$s[keterangan]'></td></tr>
+                    <tr>
+                      <th scope='row'>Tahun Ajar</th>           
+                      <td>
+                        <select class='form-control' name='c'> 
+                          <option value='$s[tahun_ajar]' selected>$s[tahun_ajar]</option>";
+                          for($x = $date1; $x <= $date2; $x++) {
+                          $y = $x + 1;
+                          echo "<option value='$x/$y'>$x/$y</option>";}
+                        echo "</select>
+                      </td>
+                    </tr>
                     <tr><th scope='row'>Aktif</th>                <td>";
                                                                   if ($s[aktif]=='Ya'){
                                                                       echo "<input type='radio' name='d' value='Ya' checked> Ya
@@ -115,6 +134,9 @@
             </div>";
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
+        if($_POST[d] == 'Ya'){
+          $query = mysql_query("UPDATE rb_tahun_akademik SET aktif = 'Tidak'");
+        }
         $query = mysql_query("INSERT INTO rb_tahun_akademik VALUES('$_POST[a]','$_POST[b]','$_POST[c]','$_POST[d]')");
         if ($query){
           echo "<script>document.location='index.php?view=tahunakademik&sukses';</script>";
@@ -135,7 +157,17 @@
                   <tbody>
                     <tr><th width='120px' scope='row'>Kode Tahun</th> <td><input type='text' class='form-control' name='a'> </td></tr>
                     <tr><th scope='row'>Nama Tahun</th>           <td><input type='text' class='form-control' name='b'></td></tr>
-                    <tr><th scope='row'>Keterangan</th>           <td><input type='text' class='form-control' name='c'></td></tr>
+                    <tr>
+                      <th scope='row'>Tahun Ajar</th>
+                        <td>
+                          <select class='form-control' name='c'> 
+                            <option value='0' selected>- Pilih Tahun Ajar -</option>";
+                            for($x = $date1; $x <= $date2; $x++) {
+                              $y = $x + 1;
+                              echo "<option value='$x/$y'>$x/$y</option>";}
+                          echo "</select>
+                        </td>
+                    </tr>
                     <tr><th scope='row'>Aktif</th>                <td><input type='radio' name='d' value='Ya'> Ya
                                                                       <input type='radio' name='d' value='Tidak'> Tidak
                     </td></tr>

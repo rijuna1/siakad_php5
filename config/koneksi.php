@@ -1,9 +1,10 @@
 <?php
+include "parser-php-version.php";
 date_default_timezone_set('Asia/Jakarta');
 $server = "localhost";
 $username = "root";
 $password = "";
-$database = "srilangkat2017";
+$database = "siakad";
 
 mysql_connect($server,$username,$password);
 mysql_select_db($database);

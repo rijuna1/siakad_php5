@@ -184,6 +184,12 @@
             echo "</div>";
           }
 
+          elseif ($_GET[view]=='sppperiode'){
+            cek_session_admin();
+            echo "<div class='row'>";
+                    include "application/spp_periode.php";
+            echo "</div>";
+          }
           elseif ($_GET[view]=='jeniskeuangan'){
             cek_session_admin();
             echo "<div class='row'>";
@@ -571,6 +577,12 @@
         });
       });
       $('.datepicker').datepicker();
+
+      // $(function () {
+      //   $('#datetimepicker').datepicker({
+      //     format:'yyyy-mm'
+      //   });
+      // });
     </script>
 
 
