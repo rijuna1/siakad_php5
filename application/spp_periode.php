@@ -1,4 +1,9 @@
-<?php if ($_GET[act]==''){ ?> 
+<?php 
+  $data_tahun_ajar = mysql_query("SELECT tahun_ajar FROM rb_tahun_akademik a where a.aktif='Ya' and not EXISTS (select * from rb_spp_periode b where a.tahun_ajar = b.tahun_ajar)");
+  $fetch = mysql_fetch_array($data_tahun_ajar);
+  $tahun_ajar = [$fetch[tahun_ajar]];
+  if ($_GET[act]==''){ 
+?> 
             <div class="col-xs-12">  
               <div class="box">
                 <div class="box-header">
@@ -27,6 +32,7 @@
                         <th style='width:40px'>No</th>
                         <th>Tahun Ajar</th>
                         <th>Periode SPP</th>
+                        <th>Biaya SPP</th>
                         <?php if($_SESSION[level]!='kepala'){ ?>
                           <th style='width:70px'>Action</th>
                         <?php } ?>
@@ -39,7 +45,8 @@
                     while($r=mysql_fetch_array($tampil)){
                     echo "<tr><td>$no</td>
                               <td>$r[tahun_ajar]</td>
-                              <td>$r[periode_spp]</td>";
+                              <td>$r[periode_spp]</td>
+                              <td>$r[biaya_spp]</td>";
                               if($_SESSION[level]!='kepala'){
                         echo "<td><center>
                                 <a class='btn btn-success btn-xs' title='Edit Data' href='index.php?view=sppperiode&act=edit&id=$r[id_spp_periode]'><span class='glyphicon glyphicon-edit'></span></a>
@@ -63,29 +70,52 @@
 <?php 
 }elseif($_GET[act]=='edit'){
     if (isset($_POST[update])){
-        $query = mysql_query("UPDATE rb_keuangan_jenis SET nama_jenis = '$_POST[a]',
-                                         total_beban = '$_POST[b]' where id_keuangan_jenis='$_POST[id]'");
+        $query = mysql_query("UPDATE rb_spp_periode SET tahun_ajar = '$_POST[a]',
+                                         periode_spp = '$_POST[b]', biaya_spp = '$_POST[c]' where id_spp_periode='$_POST[id]'");
         if ($query){
-          echo "<script>document.location='index.php?view=jeniskeuangan&sukses';</script>";
+          echo "<script>document.location='index.php?view=sppperiode&sukses';</script>";
         }else{
-          echo "<script>document.location='index.php?view=jeniskeuangan&gagal';</script>";
+          echo "<script>document.location='index.php?view=sppperiode&gagal';</script>";
         }
     }
-    $edit = mysql_query("SELECT * FROM rb_keuangan_jenis where id_keuangan_jenis='$_GET[id]'");
+    $edit = mysql_query("SELECT * FROM rb_spp_periode where id_spp_periode='$_GET[id]'");
     $s = mysql_fetch_array($edit);
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
-                  <h3 class='box-title'>Edit Data Jenis Biaya</h3>
+                <h3 class='box-title'>Edit Data Periode SPP</h3>
                 </div>
               <div class='box-body'>
               <form method='POST' class='form-horizontal' action='' enctype='multipart/form-data'>
                 <div class='col-md-12'>
                   <table class='table table-condensed table-bordered'>
                   <tbody>
-                    <input type='hidden' name='id' value='$s[id_keuangan_jenis]'>
-                    <tr><th width='120px' scope='row'>Nama Jenis</th> <td><input type='text' class='form-control' name='a' value='$s[nama_jenis]'> </td></tr>
-                    <tr><th scope='row'>Total Beban</th> <td><input type='text' class='form-control' name='b' value='$s[total_beban]'> </td></tr>
+                    <input type='hidden' name='id' value='$s[id_spp_periode]'>
+                    <tr>
+                      <th width='120px' scope='row'>Tahun Ajar</th> 
+                      <td>
+                        <select class='form-control' name='a'  readonly> 
+                            <option value='$s[tahun_ajar]' selected>$s[tahun_ajar]</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>Periode SPP</th> 
+                      <td>
+                        <div class='input-group date' id='datetimepicker'>
+                          <input type='text' class='form-control' name='b' value= '$s[periode_spp]' readonly>
+                          <span class='input-group-addon'>
+                            <span class='glyphicon glyphicon-calendar'></span>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th width='120px' scope='row'>Biaya SPP</th> 
+                      <td>
+                        <input type='number' class='form-control' name='c' value= '$s[biaya_spp]'>
+                      </td>
+                    </tr>
                   </tbody>
                   </table>
                 </div>
@@ -99,14 +129,33 @@
             </div>";
 }elseif($_GET[act]=='tambah'){
     if (isset($_POST[tambah])){
-        $query = mysql_query("INSERT INTO rb_spp_periode VALUES('','$_POST[a]','$_POST[b]','$_POST[c]')");
+        $tahun_ajar = [$_POST[a]];
+        $bulan = [$_POST[b1]];
+        $biaya = [$_POST[c]];
+        $tanggal1 = strtotime($_POST[b1]);
+        $tanggal2 = strtotime($_POST[b2]);
+        $hitung = $tanggal2 - $tanggal1 ;
+        $selisih = round($hitung /60/60/24/30);
+        
+        for ($x = 1; $x <= $selisih; $x++ )
+        {
+          array_push($bulan,date('Y-m', strtotime($x .' month', strtotime($_POST[b1]))));
+        }
+
+        $count = count($bulan);
+
+        for ($i = 0; $i < $count; $i++)
+        {
+          $periode_spp = $bulan[$i];
+          $query = mysql_query("INSERT INTO rb_spp_periode VALUES('','$_POST[a]','$periode_spp','$_POST[c]')");
+        }
         if ($query){
           echo "<script>document.location='index.php?view=sppperiode&sukses';</script>";
         }else{
-          echo "<script>document.location='index.php?view=spp_periode&gagal';</script>";
+          echo "<script>document.location='index.php?view=sppperiode&gagal';</script>";
         }
     }
-
+    var_dump($tahun_ajar);
     echo "<div class='col-md-12'>
               <div class='box box-info'>
                 <div class='box-header with-border'>
@@ -120,7 +169,11 @@
                     <tr>
                       <th width='120px' scope='row'>Tahun Ajar</th> 
                       <td colspan='3'>
-                        <input type='text' class='form-control' name='a'>
+                        <select class='form-control' name='a'> 
+                            <option value='0' selected>- Pilih Tahun Ajar -</option>";
+                            for($x = 0; $x < count($tahun_ajar); $x++) {
+                              echo "<option value='$tahun_ajar[$x]'>$tahun_ajar[$x]</option>";}
+                          echo "</select>
                       </td>
                     </tr>
                     <tr>
@@ -164,12 +217,20 @@
             <script type='text/javascript'>
               $(function () {
                 $('#datetimepicker').datepicker({
-                  format:'yyyy-mm'
+                  format:'yyyy-mm',
+                  startView: 'months',
+                  minViewMode: 'months'
+                }).on('change', function(){
+                  $('.datepicker').hide();
                 });
               });
               $(function () {
                 $('#datetimepicker2').datepicker({
-                  format:'yyyy-mm'
+                  format:'yyyy-mm',
+                  startView: 'months',
+                  minViewMode: 'months'
+                }).on('change', function(){
+                  $('.datepicker').hide();
                 });
               });
             </script>

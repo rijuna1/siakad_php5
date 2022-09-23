@@ -104,6 +104,7 @@
               <a href="#"><i class="fa fa-th-large"></i> <span>Data Keuangan</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="index.php?view=sppperiode"><i class="fa fa-circle-o"></i> Periode SPP</a></li>
+                <li><a href="index.php?view=sppbayar"><i class="fa fa-circle-o"></i> Pembayaran SPP</a></li>
                 <li><a href="index.php?view=jeniskeuangan"><i class="fa fa-circle-o"></i> Jenis Biaya</a></li>
                 <li><a href="index.php?view=pembayaransiswa"><i class="fa fa-circle-o"></i> Pembayaran Siswa</a></li>
                 <li><a href="index.php?view=laporankeuangan"><i class="fa fa-circle-o"></i> Laporan Keuangan</a></li>

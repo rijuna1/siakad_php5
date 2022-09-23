@@ -91,6 +91,7 @@
       }
 
     </script>
+   
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini">
@@ -188,6 +189,12 @@
             cek_session_admin();
             echo "<div class='row'>";
                     include "application/spp_periode.php";
+            echo "</div>";
+          }
+          elseif ($_GET[view]=='sppbayar'){
+            cek_session_admin();
+            echo "<div class='row'>";
+                    include "application/spp_bayar.php";
             echo "</div>";
           }
           elseif ($_GET[view]=='jeniskeuangan'){
