@@ -274,7 +274,15 @@ $bc->draw("foto_siswa/barcode/".$mm.".gif");
                                                                                   echo "<option value='$a[kode_kelas]'>$a[nama_kelas]</option>";
                                                                               }
                                                                     echo "</select></td></tr>
-                              <tr><th scope='row'>Angkatan</th> <td><input type='text' class='form-control' name='af'></td></tr>
+                              <tr><th scope='row'>Angkatan</th>
+                                <td>
+                                  <select class='form-control' name='af'> 
+                                    <option value='0' selected>- Pilih Angkatan -</option>"; 
+                                      $angkatan = mysql_query("SELECT tahun_ajar FROM rb_tahun_akademik GROUP BY tahun_ajar");
+                                      while($a = mysql_fetch_array($angkatan)){
+                                        echo "<option value='$a[tahun_ajar]'>$a[tahun_ajar]</option>";
+                                      }
+                      echo "</select></td></tr>
                               <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='ag'> 
                                                                             <option value='0' selected>- Pilih Jurusan -</option>"; 
                                                                               $jurusan = mysql_query("SELECT * FROM rb_jurusan");
@@ -724,7 +732,13 @@ $bc->draw('foto_siswa/barcode/'.$mm.'.gif');
                                                                               }
                                                                             }
                                                                   echo "</select></td></tr>
-                            <tr><th scope='row'>Angkatan</th> <td><input type='text' class='form-control' value='$s[angkatan]' name='af' $close></td></tr>
+                            <tr><th scope='row'>Angkatan</th> <td><select class='form-control' name='af'> 
+                            <option value='$s[angkatan]' selected>- $s[angkatan] -</option>"; 
+                              $angkatan = mysql_query("SELECT tahun_ajar FROM rb_tahun_akademik GROUP BY tahun_ajar");
+                              while($a = mysql_fetch_array($angkatan)){
+                                echo "<option value='$a[tahun_ajar]'>$a[tahun_ajar]</option>";
+                              }
+                            echo "</select></td></tr>
                             <tr><th scope='row'>Jurusan</th> <td><select class='form-control' name='ag' $close> 
                                                                           <option value='0' selected>- Pilih Jurusan -</option>"; 
                                                                             $jurusan = mysql_query("SELECT * FROM rb_jurusan");

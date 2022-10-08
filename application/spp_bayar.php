@@ -51,14 +51,9 @@ if ($_GET[act]==''){
                         <th>NIPD</th>
                         <th>NISN</th>
                         <th>Nama Siswa</th>
-                        <th>Kelas</th>";
-                        if ($_GET[kelas] != '' AND $_GET[biaya] != ''){
-                          if ($j[total_beban] != '0'){
-                            echo "<th>Status</th>";
-                          }
-                        }
-
-                        echo "<th width='140px'>Action</th>
+                        <th>Kelas</th>
+                        <th>Status</th>
+                        <th width='140px'>Action</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -71,45 +66,44 @@ if ($_GET[act]==''){
                   }
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
+                    $checking = mysql_fetch_array(mysql_query("SELECT a.* FROM rb_siswa a where EXISTS (SELECT * from rb_spp_bayar b where a.id_siswa = b.id_siswa) and a.nisn = '$r[nisn]'"));
+                    $tunggak1 = mysql_fetch_array(mysql_query("WITH sub AS (
+                                SELECT a.id_siswa, b.periode_spp FROM rb_spp_bayar a LEFT JOIN rb_spp_periode b ON a.id_spp_periode = b.id_spp_periode WHERE a.id_siswa = $r[id_siswa] ORDER BY b.periode_spp DESC LIMIT 1)
+                                SELECT date_format(concat(periode_spp,'-01'), '%Y %m %d') as periode, TIMESTAMPDIFF(MONTH, date_format(concat(periode_spp,'-01'), '%Y-%m-%d'), now()) as tunggak FROM sub"));
+                    $tunggak2 = mysql_fetch_array(mysql_query("WITH sub AS( SELECT a.id_siswa, b.periode_spp FROM rb_siswa a LEFT JOIN rb_spp_periode b ON a.angkatan = b.tahun_ajar WHERE a.id_siswa = $r[id_siswa] ORDER BY b.periode_spp ASC LIMIT 1) SELECT date_format(concat(periode_spp,'-01'), '%Y %m %d') as periode, TIMESTAMPDIFF(MONTH, date_format(concat(periode_spp,'-01'), '%Y-%m-%d'), now()) + 1 as tunggak FROM sub"));
+                    if($checking){
+                      if($tunggak1[tunggak] > 0){
+                        $status = 'Tunggakan ' . $tunggak1[tunggak] . ' bulan';
+                        $class = 'red';
+                      }else{
+                        $status = 'Tunggakan ' . $tunggak2[tunggak] . ' bulan';
+                        $class = 'red';
+                      }
+                    }else{
+                      $status = 'Lunas';
+                      $class = 'green';
+                    }
                     $t = mysql_fetch_array(mysql_query("SELECT sum(total_bayar) as total FROM `rb_keuangan_bayar` where id_keuangan_jenis='$_GET[biaya]' AND kode_kelas='$r[kode_kelas]' AND nisn='$r[nisn]' AND tahun_akademik='$th[id_tahun_akademik]'"));
                     ##untuk edit status pembayaran SPP
-                    if ($j[total_beban] <= $t[total]) { $status = 'Lunas'; $class = 'green'; }else{ $status = 'Belum Lunas'; $class = 'red'; }
                     echo "<tr><td>$no</td>
                               <td>$r[nipd]</td>
                               <td>$r[nisn]</td>
                               <td>$r[nama]</td>
-                              <td>$r[nama_kelas]</td>";
+                              <td>$r[nama_kelas]</td>
+                              <td><i style='color:$class'>$status</i></td>";
                               if ($_GET[kelas] != '' AND $_GET[biaya] != ''){
                                 if ($j[total_beban] != '0'){
                                   echo "<td><i style='color:$class'>$status</i></td>";
                                 }
                               }
 
-                              echo "<td><center>
-                                  <a class='btn btn-info btn-xs' title='Lihat Detail' href='index.php?view=pembayaransiswa&act=detail&biaya=$_GET[biaya]&nisn=$r[nisn]'><span class='glyphicon glyphicon-search'></span> Lihat Detail</a> ";
-                                if ($j[total_beban] != '0'){
-                                  if ($status == 'Lunas'){
-                                    echo "<a class='btn btn-default btn-xs' title='Lihat Detail' href='index.php?view=pembayaransiswa&act=detail&biaya=$_GET[biaya]&nisn=$r[nisn]'><span class='glyphicon glyphicon-ok'></span> Lunas</a> ";
-                                  }else{
-                                      echo "<a class='btn btn-success btn-xs' title='Bayar Lunas' href='index.php?view=pembayaransiswa&biaya=$_GET[biaya]&kelas=$_GET[kelas]&nisn=$r[nisn]&lunas' onclick=\"return confirm('Apa anda yakin untuk mengubah Status Menjadi Lunas?')\"><span class='glyphicon glyphicon-ok'></span> Lunas</a> ";
-                                  }
-                                }
-                              echo "</center></td>
+                              echo "<td>
+                                      <center>
+                                        <a class='btn btn-info btn-xs' title='Lihat Detail' href='index.php?view=sppbayar&act=detail&nisn=$r[nisn]'><span class='glyphicon glyphicon-search'></span> Lihat Detail</a> 
+                                      </center>
+                                    </td>
                           </tr>";
                       $no++;
-                      }
-
-                      if (isset($_GET[lunas])){
-                          $th = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik where aktif='Ya'"));
-                          $j = mysql_fetch_array(mysql_query("SELECT * FROM `rb_keuangan_jenis` where id_keuangan_jenis='$_GET[biaya]'"));
-                          $t = mysql_fetch_array(mysql_query("SELECT sum(total_bayar) as total FROM `rb_keuangan_bayar` where id_keuangan_jenis='$_GET[biaya]' AND kode_kelas='$_GET[kelas]' AND nisn='$_GET[nisn]' AND tahun_akademik='$th[id_tahun_akademik]'"));
-                          $total = $j[total_beban]-$t[total];
-                          $query = mysql_query("INSERT INTO rb_keuangan_bayar VALUES('','$j[id_keuangan_jenis]','$_GET[kelas]','$_GET[nisn]','$th[id_tahun_akademik]','$total','".date('Y-m-d H:i:s')."')");
-                          if ($query){
-                            echo "<script>document.location='index.php?view=pembayaransiswa&biaya=$_GET[biaya]&kelas=$_GET[kelas]&sukses';</script>";
-                          }else{
-                            echo "<script>document.location='index.php?view=pembayaransiswa&biaya=$_GET[biaya]&kelas=$_GET[kelas]&gagal';</script>";
-                          }
                       }
                   ?>
                     </tbody>
@@ -117,7 +111,7 @@ if ($_GET[act]==''){
                 </div><!-- /.box-body -->
                 <?php 
                     if ($_GET[kelas] == '' AND $_GET[biaya] == ''){
-                        echo "<center style='padding:60px; color:red'>Silahkan Memilih Jenis Biaya dan Kelas Terlebih dahulu...</center>";
+                        echo "<center style='padding:60px; color:red'>Silahkan Memilih Kelas Terlebih dahulu...</center>";
                     }
                 ?>
               </div><!-- /.box -->
@@ -126,25 +120,24 @@ if ($_GET[act]==''){
 <?php 
 }elseif($_GET[act]=='detail'){
     if (isset($_POST[proses])){
-        $th = mysql_fetch_array(mysql_query("SELECT * FROM rb_tahun_akademik where aktif='Ya'"));
-        $query = mysql_query("INSERT INTO rb_keuangan_bayar VALUES('','$_POST[a]','$_POST[b]','$_POST[c]','$th[id_tahun_akademik]','$_POST[bayar]','".date('Y-m-d H:i:s')."')");
+        $query = mysql_query("INSERT INTO rb_spp_bayar VALUES('','$_POST[id_siswa]','$_POST[id_spp_periode]','$_POST[biaya_spp]','$_POST[bayar_spp]','".date('Y-m-d H:i:s')."')");
         if ($query){
-          echo "<script>document.location='index.php?view=pembayaransiswa&act=detail&biaya=$_POST[a]&nisn=$_POST[c]&sukses';</script>";
+          echo "<script>document.location='index.php?view=sppbayar&act=detail&nisn=$_POST[nisn]&sukses';</script>";
         }else{
-          echo "<script>document.location='index.php?view=pembayaransiswa&act=detail&biaya=$_POST[a]&nisn=$_POST[c]&gagal';</script>";
+          echo "<script>document.location='index.php?view=sppbayar&act=detail&nisn=$_POST[nisn]&gagal';</script>";
         }
     }
 
-    $d = mysql_fetch_array(mysql_query("SELECT * FROM `rb_siswa` a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='$_GET[nisn]'"));
-    $j = mysql_fetch_array(mysql_query("SELECT * FROM `rb_keuangan_jenis` where id_keuangan_jenis='$_GET[biaya]'"));
-    $t = mysql_fetch_array(mysql_query("SELECT sum(total_bayar) as total FROM `rb_keuangan_bayar` where id_keuangan_jenis='$_GET[biaya]' AND kode_kelas='$d[kode_kelas]' AND nisn='$_GET[nisn]'"));
-    $sisa = $t[total]-$j[total_beban];
-    if ($j[total_beban] <= $t[total]) { $status = 'Lunas'; $class = 'success'; }else{ $status = 'Belum Lunas'; $class = 'danger'; }
+    $checking = mysql_fetch_array(mysql_query("SELECT a.* FROM rb_siswa a where EXISTS (SELECT * from rb_spp_bayar b where a.id_siswa = b.id_siswa) and a.nisn = '$_GET[nisn]'"));
+    $check_periode = mysql_fetch_array(mysql_query("SELECT b.* FROM rb_siswa a LEFT JOIN rb_spp_periode b on a.angkatan = b.tahun_ajar WHERE a.nisn = '$_GET[nisn]' ORDER BY b.periode_spp ASC LIMIT 1"));
+    $check_siswa = mysql_fetch_array(mysql_query("SELECT * FROM `rb_siswa` a JOIN rb_kelas b ON a.kode_kelas=b.kode_kelas where a.nisn='$_GET[nisn]'"));
+    
+    $check_periode_exist = mysql_fetch_array(mysql_query("SELECT * FROM rb_spp_periode x where x.periode_spp > (SELECT c.periode_spp FROM rb_siswa a LEFT JOIN rb_spp_bayar b on a.id_siswa = b.id_siswa LEFT JOIN rb_spp_periode c on b.id_spp_periode = c.id_spp_periode ORDER BY c.periode_spp DESC LIMIT 1) ORDER BY x.periode_spp ASC LIMIT 1")); 
             echo "<div class='col-xs-12'>  
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Data Pembayaran Keuangan Siswa</h3>
-                  <a class='pull-right btn btn-sm btn-warning' href='index.php?view=pembayaransiswa&biaya=$_GET[biaya]&kelas=$d[kode_kelas]'>Kembali</a>
+                  <h3 class='box-title'>Data Pembayaran SPP Siswa</h3>
+                  <a class='pull-right btn btn-sm btn-warning' href='index.php?view=sppbayar&kelas=$check_siswa[kode_kelas]'>Kembali</a>
                 </div>
                 <div class='box-body'>";
 
@@ -160,45 +153,61 @@ if ($_GET[act]==''){
                           </div>";
                   }
 
-                echo "<div class='col-md-12'>
-                  <form action='' method='POST'>
-                  <table class='table table-condensed table-hover'>
-                      <tbody>
-                        <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$d[nama_kelas]</td></tr>
-                        <tr><th scope='row'>Nama Siswa</th>           <td>$d[nama]</td></tr>
-                        <tr><th scope='row'>Jenis Biaya</th>           <td>$j[nama_jenis]</td></tr>";
-
-                        if ($sisa < 0){
-                          echo "<input type='hidden' value='$j[id_keuangan_jenis]' name='a'>
-                                <input type='hidden' value='$d[kode_kelas]' name='b'>
-                                <input type='hidden' value='$_GET[nisn]' name='c'>
-                                <tr><th scope='row'>Bayar Sisa</th>           <td><input type='text' name='bayar' value=''> <input type='submit' name='proses' value='Proses'></td></tr>";
-                        }
-
-                        if ($j[total_beban] > '0'){
-                        echo "<tr><th scope='row'>Total Beban</th>           <td>Rp ".number_format($j[total_beban])."</td></tr>
-                                <tr><th scope='row'>Total Bayar</th>           <td>Rp ".number_format($t[total])."</td></tr>
-                                <tr class='alert alert-$class'><th scope='row'>Sisa</th>           <td>Rp ".number_format($t[total]-$j[total_beban])." <small class='pull-right'>$status</small></td></tr>";
-                        }
-
-                        if ($j[total_beban] == '0'){
-                          echo "<tr><th scope='row'>Total </th>           <td>Rp ".number_format($t[total])."</td></tr>
-                              <input type='hidden' value='$j[id_keuangan_jenis]' name='a'>
-                              <input type='hidden' value='$d[kode_kelas]' name='b'>
-                              <input type='hidden' value='$_GET[nisn]' name='c'>
-                              <tr><th scope='row'>Bayar</th>           <td><input type='text' name='bayar' value=''> <input type='submit' name='proses' value='Proses'></td></tr>";
-                        }
-
-                      echo "</tbody>
-                  </table>
-                  </form>
-                  </div>
-
-
-                  <table id='example' class='table table-bordered table-striped'>
+                  if (!$checking){
+                    echo "
+                      <div class='col-md-12'>
+                        <form action='' method='POST'>
+                          <table class='table table-condensed table-hover'>
+                            <tbody>
+                              <input type='hidden' name='id_siswa' value='$check_siswa[id_siswa]'>
+                              <input type='hidden' name='id_spp_periode' value='$check_periode[id_spp_periode]'>
+                              <input type='hidden' name='biaya_spp' value='$check_periode[biaya_spp]'>
+                              <input type='hidden' name='nisn' value='$check_siswa[nisn]'>
+                              <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$check_siswa[nama_kelas]</td></tr>
+                              <tr><th scope='row'>Nama Siswa</th> <td>$check_siswa[nama]</td></tr>
+                              <tr><th scope='row'>Tahun Ajar</th> <td>$check_periode[tahun_ajar]</td></tr>
+                              <tr><th scope='row'>Periode SPP</th> <td>$check_periode[periode_spp]</td></tr>
+                              <tr><th scope='row'>Biaya SPP</th> <td>$check_periode[biaya_spp]</td></tr>
+                              <tr><th scope='row'>Tunggak</th> <td>$check_periode[biaya_spp]</td></tr>
+                              <tr><th scope='row'>Bayar SPP</th> <td>
+                                <input type='text' name='bayar_spp' value='$check_periode[biaya_spp]' readonly> 
+                                <input type='submit' name='proses' value='Proses'>
+                              </td></tr>
+                            </tbody>
+                          </table>
+                        </form>
+                      </div>";
+                  } else {
+                    echo "
+                      <div class='col-md-12'>
+                        <form action='' method='POST'>
+                          <table class='table table-condensed table-hover'>
+                            <tbody>
+                              <input type='hidden' name='id_siswa' value='$check_siswa[id_siswa]'>
+                              <input type='hidden' name='id_spp_periode' value='$check_periode_exist[id_spp_periode]'>
+                              <input type='hidden' name='biaya_spp' value='$check_periode_exist[biaya_spp]'>
+                              <input type='hidden' name='nisn' value='$check_siswa[nisn]'>
+                              <tr><th width='120px' scope='row'>Nama Kelas</th> <td>$check_siswa[nama_kelas]</td></tr>
+                              <tr><th scope='row'>Nama Siswa</th> <td>$check_siswa[nama]</td></tr>
+                              <tr><th scope='row'>Tahun Ajar</th> <td>$check_periode_exist[tahun_ajar]</td></tr>
+                              <tr><th scope='row'>Periode SPP</th> <td>$check_periode_exist[periode_spp]</td></tr>
+                              <tr><th scope='row'>Biaya SPP</th> <td>$check_periode_exist[biaya_spp]</td></tr>
+                              <tr><th scope='row'>Tunggak</th> <td>$check_periode_exist[biaya_spp]</td></tr>
+                              <tr><th scope='row'>Bayar SPP</th> <td>
+                                <input type='text' name='bayar_spp' value='$check_periode_exist[biaya_spp]' readonly> 
+                                <input type='submit' name='proses' value='Proses'>
+                              </td></tr>
+                            </tbody>
+                          </table>
+                        </form>
+                      </div>";
+                  }
+                      echo "
+                      <table id='example' class='table table-bordered table-striped'>
                     <thead>
                       <tr>
                         <th style='width:20px'>No</th>
+                        <th>Periode SPP</th>
                         <th>Total Bayar</th>
                         <th>Tanggal Bayar</th>";
                         if($_SESSION[level]!='kepala'){
@@ -207,25 +216,32 @@ if ($_GET[act]==''){
                       echo "</tr>
                     </thead>
                     <tbody>";
-                      $tampil = mysql_query("SELECT * FROM rb_keuangan_bayar where id_keuangan_jenis='$_GET[biaya]' AND kode_kelas='$d[kode_kelas]' AND nisn='$_GET[nisn]' ORDER BY id_keuangan_bayar DESC");
+                      $tampil = mysql_query("SELECT a.id_spp_bayar, b.nisn, c.periode_spp, a.bayar_spp, a.waktu_bayar FROM rb_spp_bayar a LEFT JOIN rb_siswa b ON a.id_siswa = b.id_siswa LEFT JOIN rb_spp_periode c ON a.id_spp_periode = c.id_spp_periode WHERE b.nisn = '220001' ORDER BY c.periode_spp DESC");
                     $no = 1;
                     while($r=mysql_fetch_array($tampil)){
                     $ex = explode(' ',$r[waktu_bayar]);
                     echo "<tr><td>$no</td>
-                              <td>Rp ".number_format($r[total_bayar])."</td>
+                              <td>$r[periode_spp]</td>
+                              <td>Rp ".number_format($r[bayae_spp])."</td>
                               <td>".tgl_indo($ex[0])." ".$ex[1]." WIB</td>";
                               if($_SESSION[level]!='kepala'){
+                                if($no == 1) {
                                 echo "<td style='width:80px !important'><center>
-                                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=pembayaransiswa&act=detail&biaya=$_GET[biaya]&nisn=$_GET[nisn]&hapus=$r[id_keuangan_bayar]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a>
+                                        <a class='btn btn-danger btn-xs' title='Delete Data' href='index.php?view=sppbayar&act=detail&nisn=$_GET[nisn]&hapus=$r[id_spp_bayar]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a>
                                       </center></td>";
-                              }
+                                } else {
+                                  echo "<td style='width:80px !important'><center>
+                                        <div class='btn btn-danger btn-xs disabled'><span class='glyphicon glyphicon-remove'></span></div>
+                                      </center></td>";
+                                }
+                            }
                             echo "</tr>";
                       $no++;
                       }
 
                       if (isset($_GET[hapus])){
-                        mysql_query("DELETE FROM rb_keuangan_bayar where id_keuangan_bayar='$_GET[hapus]'");
-                        echo "<script>document.location='index.php?view=pembayaransiswa&act=detail&biaya=$_GET[biaya]&nisn=$_GET[nisn]';</script>";
+                        mysql_query("DELETE FROM rb_spp_bayar where id_spp_bayar='$_GET[hapus]'");
+                        echo "<script>document.location='index.php?view=sppbayar&act=detail&nisn=$_GET[nisn]';</script>";
                       }
 
                     echo "<tbody>
